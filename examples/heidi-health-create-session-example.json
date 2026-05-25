@@ -1,0 +1,21 @@
+{
+  "operation": "createSession",
+  "method": "POST",
+  "path": "/sessions",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYWJjMTIzIn0.signature",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "patient_profile_id": "ptp_01HXYZ123",
+      "ehr_appointment_id": "appt_5567"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "session_id": "sess_01HXYZABC456"
+    }
+  }
+}

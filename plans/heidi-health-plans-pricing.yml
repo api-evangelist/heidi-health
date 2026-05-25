@@ -1,0 +1,118 @@
+aid: heidi-health
+specVersion: '0.1'
+name: Heidi Health Plans & Pricing
+description: >-
+  Commercial offering for Heidi Health captured using API Commons Plans 0.1.
+  Four tiers serve individual clinicians (Free, Evidence Plus, Clinician) and
+  organisations (Enterprise). Paid clinician tiers ship with a 14-day free
+  trial and convert to per-clinician monthly billing; Enterprise is custom
+  priced and adds EHR integration, SSO, centralised billing, and dedicated
+  customer success. Use of the Heidi API and Heidi Widget for partner
+  integration is contracted separately under the Enterprise / partnership
+  agreement.
+url: https://www.heidihealth.com/pricing
+created: '2026-05-24'
+modified: '2026-05-24'
+plans:
+  - id: free
+    name: Free
+    description: Try Heidi at no cost. Unlimited transcription with standard templates.
+    target: Individual clinician
+    trial: false
+    entries:
+      - geo: GLOBAL
+        unit: 1
+        label: Clinician
+        limit: 1
+        price: 0
+        currency: USD
+        metric: user
+        timeFrame: month
+    elements:
+      - Unlimited transcription
+      - Standard consult-note templates
+      - Task management
+      - Limited Ask Heidi
+      - Limited advanced templates
+      - Limited patient and session linking
+      - Limited personalisations
+  - id: evidence-plus
+    name: Evidence Plus
+    description: Adds evidence-based decision support with citations on top of the Free experience.
+    target: Individual clinician
+    trial:
+      durationDays: 14
+      url: https://scribe.heidihealth.com/register#paymentChosen="EVIDENCE_TRIAL"
+    entries:
+      - geo: GLOBAL
+        unit: 1
+        label: Clinician
+        limit: 1
+        price: Contact
+        currency: USD
+        metric: user
+        timeFrame: month
+        description: Public pricing not disclosed; available via in-product checkout.
+    elements:
+      - Everything in Free
+      - Unlimited evidence answers
+      - Transparent citations
+      - CPD/CME tracking
+      - Limited patient-context-aware answers
+      - Limited live evidence suggestions
+      - Premium evidence sources
+      - Personal evidence library
+  - id: clinician
+    name: Clinician
+    description: Full single-clinician experience with coding, team template sharing, and document/session sharing.
+    target: Individual clinician
+    trial:
+      durationDays: 14
+      url: https://scribe.heidihealth.com/register#paymentChosen="CLINICIAN_TRIAL"
+    entries:
+      - geo: GLOBAL
+        unit: 1
+        label: Clinician
+        limit: 1
+        price: Contact
+        currency: USD
+        metric: user
+        timeFrame: month
+        description: Public pricing not disclosed; available via in-product checkout.
+    elements:
+      - Everything in Evidence Plus
+      - Clinical coding capabilities
+      - Session status tracking
+      - Team template sharing
+      - 1:1 template configuration
+      - Document and session sharing
+  - id: enterprise
+    name: Enterprise
+    description: Organisation-wide deployment with EHR integration, SSO, dedicated success, and custom hosting.
+    target: Clinical organisations and platform partners
+    trial: false
+    entries:
+      - geo: GLOBAL
+        unit: 1
+        label: Clinician
+        limit: 1
+        price: Call
+        currency: USD
+        metric: user
+        timeFrame: month
+        description: Custom contract.
+    elements:
+      - Everything in Clinician
+      - EHR integration (Heidi API, Heidi Widget)
+      - Centralised billing
+      - Priority support
+      - Team management and controls
+      - Guided onboarding
+      - Dedicated Customer Success Manager
+      - Single Sign-On (SSO)
+      - Service availability commitments
+      - Custom terms and hosting
+sources:
+  - https://www.heidihealth.com/pricing
+  - https://www.heidihealth.com/contact-sales
+  - https://www.heidihealth.com/partners

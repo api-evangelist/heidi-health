@@ -1,0 +1,85 @@
+extends:
+  - spectral:oas
+documentationUrl: https://www.heidihealth.com/developers/heidi-api/overview
+functions: []
+rules:
+  heidi-base-url:
+    description: Servers must include the canonical registrar.api.heidihealth.com production base URL.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://registrar\\.api\\.heidihealth\\.com/api/v2/ml-scribe/open-api"
+  heidi-bearer-auth-required:
+    description: Operations other than /jwt must use bearer auth.
+    severity: warn
+    given: "$.paths[?(@property != '/jwt')][*].security"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: object
+            required: [bearerAuth]
+  heidi-api-key-on-jwt:
+    description: GET /jwt must be secured with the Heidi-Api-Key header scheme.
+    severity: error
+    given: "$.paths['/jwt'].get.security"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: object
+            required: [heidiApiKey]
+  heidi-title-case-summary:
+    description: Operation summaries must be in Title Case.
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(?:[A-Z][a-z0-9]*|[A-Z]+|\\d+)(?:\\s+(?:[A-Z][a-z0-9]*|[A-Z]+|\\d+|of|a|an|the|to|for|in|on|by|with|and|or|from|via))*$"
+  heidi-session-id-path-parameter:
+    description: Session-scoped paths must use {session_id} as the path parameter name.
+    severity: error
+    given: "$.paths[?(@property =~ /\\/sessions\\/.*/)]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "\\{session_id\\}"
+  heidi-content-type-enum:
+    description: content_type fields must restrict to MARKDOWN or HTML.
+    severity: warn
+    given: "$..[?(@property == 'content_type')].enum"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          items: { type: string, enum: [MARKDOWN, HTML] }
+  heidi-voice-style-enum:
+    description: voice_style fields must use the documented Heidi enum.
+    severity: warn
+    given: "$..[?(@property == 'voice_style')].enum"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          items:
+            type: string
+            enum: [GOLDILOCKS, DETAILED, BRIEF, SUPER_DETAILED, MY_VOICE]
+  heidi-brain-enum:
+    description: brain fields must be LEFT or RIGHT.
+    severity: warn
+    given: "$..[?(@property == 'brain')].enum"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          items: { type: string, enum: [LEFT, RIGHT] }

@@ -1,0 +1,33 @@
+{
+  "operation": "generateConsultNote",
+  "method": "POST",
+  "path": "/sessions/{session_id}/consult-note",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    },
+    "path": {
+      "session_id": "sess_01HXYZABC456"
+    },
+    "body": {
+      "generation_method": "TEMPLATE",
+      "template_id": "tpl_h_and_p",
+      "addition": "Include differential diagnosis prioritised by likelihood.",
+      "voice_style": "GOLDILOCKS",
+      "brain": "LEFT",
+      "content_type": "MARKDOWN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/x-ndjson",
+    "body_stream": [
+      { "data": "## History\n" },
+      { "data": "55-year-old female presenting with " },
+      { "data": "intermittent chest pain over the past " },
+      { "data": "two weeks...\n" },
+      { "data": "## Differential\n1. Stable angina\n2. GERD\n3. Costochondritis\n" }
+    ]
+  }
+}

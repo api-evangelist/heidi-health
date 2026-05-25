@@ -1,0 +1,211 @@
+aid: heidi-health
+name: Heidi Health Vocabulary
+description: >-
+  Operational vocabulary mapping for Heidi Health, covering the domain
+  concepts, capability surfaces, content controls, coding standards, and
+  compliance frameworks that recur across the Heidi API, the Heidi Widget,
+  and Heidi's product surface (Scribe, Evidence, Remote, Comms).
+created: '2026-05-24'
+modified: '2026-05-24'
+dimensions:
+  - id: capability
+    label: Capability Surface
+    values:
+      - id: scribe
+        label: Heidi Scribe
+        description: Ambient AI medical scribe — transcript and consult-note generation.
+      - id: evidence
+        label: Heidi Evidence
+        description: Clinical decision support with literature citations and CPD/CME tracking.
+      - id: remote
+        label: Heidi Remote
+        description: 21-gram wearable microphone with offline capture and on-device encryption.
+      - id: comms
+        label: Heidi Comms
+        description: Clinical communications module.
+      - id: heidi-api
+        label: Heidi API
+        description: Public REST API at registrar.api.heidihealth.com.
+      - id: heidi-widget
+        label: Heidi Widget
+        description: Embeddable JavaScript widget for web-based EHRs.
+
+  - id: resource
+    label: API Resource
+    values:
+      - id: jwt
+        label: JWT
+      - id: template
+        label: Template
+      - id: patient-profile
+        label: Patient Profile
+      - id: session
+        label: Session
+      - id: context-document
+        label: Context Document
+      - id: transcript
+        label: Transcript
+      - id: consult-note
+        label: Consult Note
+      - id: document
+        label: Document
+      - id: clinical-code
+        label: Clinical Code
+
+  - id: voice-style
+    label: Voice Style
+    values:
+      - id: goldilocks
+        label: Goldilocks
+      - id: detailed
+        label: Detailed
+      - id: brief
+        label: Brief
+      - id: super-detailed
+        label: Super Detailed
+      - id: my-voice
+        label: My Voice
+
+  - id: brain
+    label: Brain
+    values:
+      - id: left
+        label: Left
+      - id: right
+        label: Right
+
+  - id: content-type
+    label: Content Type
+    values:
+      - id: markdown
+        label: Markdown
+      - id: html
+        label: HTML
+
+  - id: coding-system
+    label: Clinical Coding System
+    values:
+      - id: icd-10
+        label: ICD-10
+      - id: icd-10-cm
+        label: ICD-10-CM
+      - id: icd-9
+        label: ICD-9
+      - id: icd-9-cm
+        label: ICD-9-CM
+      - id: snomed
+        label: SNOMED
+      - id: snomed-ct
+        label: SNOMED-CT
+      - id: opcs-410
+        label: OPCS-410
+      - id: achi-13
+        label: ACHI-13
+      - id: cpt-2025
+        label: CPT-2025
+
+  - id: transcript-source
+    label: Transcript Source
+    values:
+      - id: user-uploaded
+        label: User Uploaded
+      - id: live
+        label: Live
+      - id: backup
+        label: Backup
+
+  - id: context-status
+    label: Context Document Status
+    values:
+      - id: parsing
+        label: Parsing
+      - id: ready
+        label: Ready
+
+  - id: clinical-specialty
+    label: Clinical Specialty
+    values:
+      - id: family-medicine
+        label: Family Medicine
+      - id: specialist
+        label: Specialist
+      - id: nursing
+        label: Nursing
+      - id: mental-health
+        label: Mental Health
+      - id: allied-health
+        label: Allied Health
+      - id: dentistry
+        label: Dentistry
+      - id: veterinary
+        label: Veterinary
+      - id: trainee
+        label: Medical Trainee
+
+  - id: ehr-integration
+    label: EHR Integration
+    values:
+      - id: epic-hyperspace
+        label: Epic Hyperspace
+      - id: epic-hyperdrive
+        label: Epic Hyperdrive
+      - id: epic-haiku
+        label: Epic Haiku
+      - id: oracle-cerner-powerchart
+        label: Oracle Cerner PowerChart
+      - id: oracle-cerner-firstnet
+        label: Oracle Cerner FirstNet
+      - id: athenahealth
+        label: Athenahealth
+      - id: best-practice
+        label: Best Practice Software
+      - id: gentu
+        label: Gentu (Magentus)
+      - id: eclinicalworks-vim
+        label: eClinicalWorks (via Vim)
+      - id: medical-director
+        label: Medical Director
+      - id: cliniko
+        label: Cliniko
+      - id: halaxy
+        label: Halaxy
+      - id: medirecords
+        label: MediRecords
+
+  - id: compliance
+    label: Compliance Framework
+    values:
+      - id: hipaa
+        label: HIPAA
+      - id: gdpr
+        label: GDPR
+      - id: soc-2
+        label: SOC 2
+      - id: iso-27001
+        label: ISO 27001
+      - id: iso-42001
+        label: ISO 42001
+      - id: app
+        label: APP (Australia)
+      - id: pipeda
+        label: PIPEDA (Canada)
+      - id: nhs
+        label: NHS (UK)
+      - id: cyber-essentials-plus
+        label: Cyber Essentials+
+      - id: ukca
+        label: UKCA
+      - id: swiss-fdpa
+        label: Swiss FDPA
+
+  - id: plan
+    label: Commercial Plan
+    values:
+      - id: free
+        label: Free
+      - id: evidence-plus
+        label: Evidence Plus
+      - id: clinician
+        label: Clinician
+      - id: enterprise
+        label: Enterprise

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/heidi-health/main/json-schema/heidi-health-transcript-schema.json",
+  "title": "HeidiTranscript",
+  "description": "Final or live chunked transcript produced from a Heidi session's audio.",
+  "type": "object",
+  "required": ["session_id"],
+  "properties": {
+    "session_id": { "type": "string" },
+    "transcript": { "type": "string", "description": "Concatenated transcript text." },
+    "language_code": { "type": "string" },
+    "active_source": {
+      "type": "string",
+      "enum": ["USER_UPLOADED", "LIVE", "BACKUP"],
+      "description": "Which audio source is currently active for the session."
+    },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "status": { "type": "string", "enum": ["PENDING", "READY", "FAILED"] },
+          "duration": { "type": "number" },
+          "text": { "type": "string" },
+          "source": { "type": "string", "enum": ["USER_UPLOADED", "LIVE", "BACKUP"] }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,37 @@
+{
+  "operation": "getSessionClinicalCodes",
+  "method": "GET",
+  "path": "/sessions/{session_id}/clinical-codes",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    },
+    "path": { "session_id": "sess_01HXYZABC456" },
+    "query": { "coding_system": "ICD-10-CM" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "coding_system": "ICD-10-CM",
+      "status": "READY",
+      "entities": [
+        {
+          "entity": "Type 2 diabetes mellitus without complications",
+          "primary_code": {
+            "code": "E11.9",
+            "description": "Type 2 diabetes mellitus without complications",
+            "coding_system": "ICD-10-CM",
+            "valid": true,
+            "hierarchy": ["Endocrine disorders", "Diabetes mellitus", "Type 2 diabetes mellitus"]
+          },
+          "similar_codes": [
+            { "code": "E11.65", "description": "Type 2 diabetes mellitus with hyperglycemia", "coding_system": "ICD-10-CM", "valid": true }
+          ],
+          "references": [
+            { "source": "TRANSCRIPT", "text": "Patient has well-controlled T2DM on metformin.", "start": 412, "end": 458 }
+          ]
+        }
+      ]
+    }
+  }
+}

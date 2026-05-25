@@ -1,0 +1,192 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Heidi Health — Sessions
+  description: 'Heidi Health Sessions API. Create, retrieve, update, and list clinical sessions — the central object tying transcription, consult notes, documents, and context together. Lead operation: Create Session.'
+  tags:
+    - Heidi Health
+    - Sessions
+    - Clinical Encounters
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+  - namespace: env
+    keys:
+      HEIDI_BEARER_TOKEN: HEIDI_BEARER_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: heidi-sessions
+      baseUri: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+      description: Heidi Health sessions surface.
+      resources:
+        - name: sessions
+          path: /sessions
+          operations:
+            - name: createSession
+              method: POST
+              description: Create a clinical session.
+              outputRawFormat: json
+              outputParameters:
+                - name: session_id
+                  type: string
+                  value: $.session_id
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: session
+          path: /sessions/{session_id}
+          operations:
+            - name: getSession
+              method: GET
+              description: Retrieve a session by id.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+            - name: updateSession
+              method: PATCH
+              description: Update a session.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: linkedUserSessions
+          path: /sessions/linked-user
+          operations:
+            - name: listLinkedUserSessions
+              method: GET
+              description: List sessions for the linked user.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: page_size
+                  in: query
+                  type: integer
+                  required: false
+      authentication:
+        type: bearer
+        value: '{{env.HEIDI_BEARER_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: heidi-sessions-rest
+      port: 8080
+      description: REST adapter for Heidi Sessions.
+      resources:
+        - path: /v1/sessions
+          name: sessions
+          operations:
+            - method: POST
+              name: createSession
+              call: heidi-sessions.createSession
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/sessions/{session_id}
+          name: session
+          operations:
+            - method: GET
+              name: getSession
+              call: heidi-sessions.getSession
+              with:
+                session_id: rest.path.session_id
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: PATCH
+              name: updateSession
+              call: heidi-sessions.updateSession
+              with:
+                session_id: rest.path.session_id
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/sessions/linked-user
+          name: linkedUserSessions
+          operations:
+            - method: GET
+              name: listLinkedUserSessions
+              call: heidi-sessions.listLinkedUserSessions
+              with:
+                page_size: rest.query.page_size
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: heidi-sessions-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for Heidi Sessions.
+      tools:
+        - name: heidi-create-session
+          description: Create a Heidi clinical session.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: heidi-sessions.createSession
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: heidi-get-session
+          description: Retrieve a Heidi session.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: heidi-sessions.getSession
+          with:
+            session_id: tools.session_id
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: heidi-update-session
+          description: Update a Heidi session.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: heidi-sessions.updateSession
+          with:
+            session_id: tools.session_id
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: heidi-list-linked-user-sessions
+          description: List sessions for the linked Heidi user.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: heidi-sessions.listLinkedUserSessions
+          with:
+            page_size: tools.page_size
+          outputParameters:
+            - type: object
+              mapping: $.

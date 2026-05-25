@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Heidi Health — Clinical Coding
+  description: 'Heidi Health Clinical Coding API. Generate clinical codes across ICD-10/SNOMED/CPT and related coding systems for a session, with citations back to transcript and consult-note text. Lead operation: Get Clinical Codes.'
+  tags:
+    - Heidi Health
+    - Clinical Coding
+    - ICD-10
+    - SNOMED
+    - CPT
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+  - namespace: env
+    keys:
+      HEIDI_BEARER_TOKEN: HEIDI_BEARER_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: heidi-clinical-coding
+      baseUri: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+      description: Heidi Health clinical-coding surface.
+      resources:
+        - name: clinicalCodes
+          path: /sessions/{session_id}/clinical-codes
+          operations:
+            - name: getSessionClinicalCodes
+              method: GET
+              description: Generate clinical codes for a session.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+                - name: coding_system
+                  in: query
+                  type: string
+                  required: true
+      authentication:
+        type: bearer
+        value: '{{env.HEIDI_BEARER_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: heidi-clinical-coding-rest
+      port: 8080
+      description: REST adapter for Heidi Clinical Coding.
+      resources:
+        - path: /v1/sessions/{session_id}/clinical-codes
+          name: clinicalCodes
+          operations:
+            - method: GET
+              name: getSessionClinicalCodes
+              call: heidi-clinical-coding.getSessionClinicalCodes
+              with:
+                session_id: rest.path.session_id
+                coding_system: rest.query.coding_system
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: heidi-clinical-coding-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for Heidi Clinical Coding.
+      tools:
+        - name: heidi-get-clinical-codes
+          description: Generate clinical codes for a Heidi session.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: heidi-clinical-coding.getSessionClinicalCodes
+          with:
+            session_id: tools.session_id
+            coding_system: tools.coding_system
+          outputParameters:
+            - type: object
+              mapping: $.

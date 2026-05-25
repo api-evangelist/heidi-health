@@ -1,0 +1,93 @@
+{
+  "$id": "https://raw.githubusercontent.com/api-evangelist/heidi-health/main/json-structure/heidi-health-session-structure.json",
+  "title": "Heidi Session Structure",
+  "description": "Operational structure for the Heidi Session aggregate — the root entity that ties together transcript, consult note, documents, and context.",
+  "version": "1.0.0",
+  "root": "Session",
+  "entities": {
+    "Session": {
+      "key": "session_id",
+      "fields": [
+        { "name": "session_id", "type": "string", "required": true },
+        { "name": "patient_profile_id", "type": "string" },
+        { "name": "ehr_appointment_id", "type": "string" },
+        { "name": "ehr_patient_id", "type": "string" },
+        { "name": "duration", "type": "integer" },
+        { "name": "language_code", "type": "string" },
+        { "name": "output_language_code", "type": "string" },
+        { "name": "consent_obtained", "type": "boolean" },
+        { "name": "clinician_notes", "type": "array<string>" },
+        { "name": "linked_sessions_for_context", "type": "array<string>" },
+        { "name": "created_at", "type": "date-time" },
+        { "name": "updated_at", "type": "date-time" }
+      ],
+      "relations": [
+        { "name": "patient", "target": "PatientProfile", "kind": "manyToOne" },
+        { "name": "consult_note", "target": "ConsultNote", "kind": "oneToOne" },
+        { "name": "documents", "target": "Document", "kind": "oneToMany" },
+        { "name": "transcript", "target": "Transcript", "kind": "oneToOne" },
+        { "name": "context_documents", "target": "ContextDocument", "kind": "oneToMany" },
+        { "name": "clinical_codes", "target": "ClinicalCode", "kind": "oneToMany" }
+      ]
+    },
+    "PatientProfile": {
+      "key": "id",
+      "fields": [
+        { "name": "id", "type": "string", "required": true },
+        { "name": "first_name", "type": "string" },
+        { "name": "last_name", "type": "string" },
+        { "name": "date_of_birth", "type": "date" },
+        { "name": "gender", "type": "string" },
+        { "name": "ehr_patient_id", "type": "string" },
+        { "name": "provider", "type": "string" }
+      ]
+    },
+    "ConsultNote": {
+      "fields": [
+        { "name": "session_id", "type": "string", "required": true },
+        { "name": "template_id", "type": "string" },
+        { "name": "voice_style", "type": "string" },
+        { "name": "brain", "type": "string" },
+        { "name": "content_type", "type": "string" },
+        { "name": "content", "type": "string" }
+      ]
+    },
+    "Document": {
+      "key": "id",
+      "fields": [
+        { "name": "id", "type": "string", "required": true },
+        { "name": "session_id", "type": "string" },
+        { "name": "template_id", "type": "string" },
+        { "name": "name", "type": "string" },
+        { "name": "content", "type": "string" },
+        { "name": "content_type", "type": "string" }
+      ]
+    },
+    "Transcript": {
+      "fields": [
+        { "name": "session_id", "type": "string", "required": true },
+        { "name": "transcript", "type": "string" },
+        { "name": "language_code", "type": "string" },
+        { "name": "active_source", "type": "string" }
+      ]
+    },
+    "ContextDocument": {
+      "key": "id",
+      "fields": [
+        { "name": "id", "type": "string", "required": true },
+        { "name": "session_id", "type": "string" },
+        { "name": "filename", "type": "string" },
+        { "name": "status", "type": "string" },
+        { "name": "unstructured", "type": "boolean" }
+      ]
+    },
+    "ClinicalCode": {
+      "fields": [
+        { "name": "code", "type": "string", "required": true },
+        { "name": "description", "type": "string" },
+        { "name": "coding_system", "type": "string" },
+        { "name": "valid", "type": "boolean" }
+      ]
+    }
+  }
+}

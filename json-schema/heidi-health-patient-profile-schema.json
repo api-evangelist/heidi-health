@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/heidi-health/main/json-schema/heidi-health-patient-profile-schema.json",
+  "title": "HeidiPatientProfile",
+  "description": "Longitudinal patient record linked to one or more Heidi sessions.",
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "id": { "type": "string" },
+    "first_name": { "type": "string" },
+    "last_name": { "type": "string" },
+    "date_of_birth": { "type": "string", "format": "date" },
+    "gender": { "type": "string" },
+    "ehr_patient_id": { "type": ["string", "null"] },
+    "provider": { "type": ["string", "null"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,21 @@
+{
+  "operation": "getJwt",
+  "method": "GET",
+  "path": "/jwt",
+  "request": {
+    "headers": {
+      "Heidi-Api-Key": "hk_live_REDACTED"
+    },
+    "query": {
+      "email": "drsmith@example-clinic.org",
+      "third_party_internal_id": "ehr-user-7741"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYWJjMTIzIiwiZWhyX3VpZCI6ImVoci11c2VyLTc3NDEifQ.signature",
+      "expiration_time": "2026-05-25T00:00:00.000Z"
+    }
+  }
+}

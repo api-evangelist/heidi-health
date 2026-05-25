@@ -1,0 +1,115 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Heidi Health — Documents
+  description: 'Heidi Health Documents API. Generate and list auxiliary template-driven documents (referral letters, patient handouts, billing summaries) attached to a session. Lead operation: Generate Document.'
+  tags:
+    - Heidi Health
+    - Documents
+    - Generation
+    - Templates
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+  - namespace: env
+    keys:
+      HEIDI_BEARER_TOKEN: HEIDI_BEARER_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: heidi-documents
+      baseUri: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+      description: Heidi Health documents surface.
+      resources:
+        - name: documents
+          path: /sessions/{session_id}/documents
+          operations:
+            - name: generateDocument
+              method: POST
+              description: Generate a document for a session.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+            - name: listSessionDocuments
+              method: GET
+              description: List documents for a session.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+      authentication:
+        type: bearer
+        value: '{{env.HEIDI_BEARER_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: heidi-documents-rest
+      port: 8080
+      description: REST adapter for Heidi Documents.
+      resources:
+        - path: /v1/sessions/{session_id}/documents
+          name: documents
+          operations:
+            - method: POST
+              name: generateDocument
+              call: heidi-documents.generateDocument
+              with:
+                session_id: rest.path.session_id
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: GET
+              name: listSessionDocuments
+              call: heidi-documents.listSessionDocuments
+              with:
+                session_id: rest.path.session_id
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: heidi-documents-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for Heidi Documents.
+      tools:
+        - name: heidi-generate-document
+          description: Generate a Heidi document for a session.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: heidi-documents.generateDocument
+          with:
+            session_id: tools.session_id
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: heidi-list-session-documents
+          description: List Heidi documents for a session.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: heidi-documents.listSessionDocuments
+          with:
+            session_id: tools.session_id
+          outputParameters:
+            - type: object
+              mapping: $.

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/heidi-health/main/json-schema/heidi-health-document-schema.json",
+  "title": "HeidiDocument",
+  "description": "Auxiliary template-driven document (referral letter, patient handout, billing summary) attached to a Heidi session.",
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "index": { "type": "integer" },
+    "name": { "type": "string" },
+    "template_id": { "type": "string" },
+    "generation_type": { "type": "string" },
+    "content": { "type": "string" },
+    "content_type": { "type": "string", "enum": ["MARKDOWN", "HTML"] },
+    "voice_style": { "type": "string", "enum": ["GOLDILOCKS", "DETAILED", "BRIEF", "SUPER_DETAILED", "MY_VOICE"] },
+    "brain": { "type": "string", "enum": ["LEFT", "RIGHT"] }
+  },
+  "additionalProperties": true
+}

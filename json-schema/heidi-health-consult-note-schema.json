@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/heidi-health/main/json-schema/heidi-health-consult-note-schema.json",
+  "title": "HeidiConsultNote",
+  "description": "Consult note generated for a session against a Heidi or custom template.",
+  "type": "object",
+  "required": ["session_id"],
+  "properties": {
+    "session_id": { "type": "string" },
+    "template_id": { "type": ["string", "null"] },
+    "generation_method": { "type": "string", "enum": ["TEMPLATE"] },
+    "voice_style": {
+      "type": "string",
+      "enum": ["GOLDILOCKS", "DETAILED", "BRIEF", "SUPER_DETAILED", "MY_VOICE"]
+    },
+    "brain": { "type": "string", "enum": ["LEFT", "RIGHT"] },
+    "addition": { "type": "string" },
+    "content_type": { "type": "string", "enum": ["MARKDOWN", "HTML"] },
+    "content": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": true
+}

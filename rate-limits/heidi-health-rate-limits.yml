@@ -1,0 +1,92 @@
+aid: heidi-health
+specVersion: '0.1'
+name: Heidi Health Rate Limits
+description: >-
+  Heidi Health does not publish explicit numeric rate-limit values in its
+  public developer documentation. Practical limits are governed by the
+  partner contract, per-API-key throttling at the registrar.api.heidihealth.com
+  edge, recommended audio-chunking cadence, and asynchronous status flags on
+  long-running operations. This file captures the operational ceilings and
+  guidance documented in the developer portal so partners can budget
+  capacity and design clients defensively.
+url: https://www.heidihealth.com/developers/heidi-api/overview
+created: '2026-05-24'
+modified: '2026-05-24'
+policies:
+  - id: api-key-scoped-throttling
+    scope: api-key
+    description: >-
+      Each Heidi API key represents one EHR/tenant. Per-key rate enforcement
+      occurs at the registrar.api.heidihealth.com edge. Numeric ceilings are
+      not published; partners receive their key-specific limits as part of
+      onboarding.
+    documented: false
+  - id: jwt-lifetime
+    scope: token
+    description: >-
+      Every JWT issued by GET /jwt has an `expiration_time` (ISO 8601). Clients
+      must refresh the token before expiry and present it as `Authorization:
+      Bearer <token>` on every subsequent call. Tokens are bound to a specific
+      EHR user (email + third_party_internal_id).
+    documented: true
+    source: https://www.heidihealth.com/developers/heidi-api/authentication
+  - id: live-audio-chunking
+    scope: client-recommendation
+    description: >-
+      For live ambient capture via the chunked transcription endpoints,
+      Heidi recommends splitting audio into 45-second to 1-minute chunks to
+      balance latency and accuracy. Smaller chunks degrade transcript
+      quality; larger chunks delay live results.
+    documented: true
+    source: https://www.heidihealth.com/developers/heidi-api/transcription
+  - id: lazy-transcription
+    scope: operation
+    description: >-
+      Audio uploaded via POST /sessions/{session_id}/upload-audio is stored
+      and transcribed lazily on the next GET /sessions/{session_id}/transcript
+      call. Clients must tolerate first-read latency proportional to audio
+      length.
+    documented: true
+    source: https://www.heidihealth.com/developers/heidi-api/transcription
+  - id: streamed-generation
+    scope: operation
+    description: >-
+      Consult-note generation (POST /sessions/{session_id}/consult-note),
+      custom-template generation, and Ask Heidi (POST /sessions/{session_id}/ask-ai)
+      return chunked `application/x-ndjson` responses (`{"data": "..."}`
+      objects). Clients must keep the connection open and concatenate
+      chunks; there is no documented maximum response length but generation
+      duration is proportional to consult complexity and template size.
+    documented: true
+    source: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - id: pagination
+    scope: operation
+    description: >-
+      GET /sessions/linked-user is paginated via `page_size`. Responses
+      include `count`, `total_count`, `has_next`, `has_previous`. Maximum
+      `page_size` not documented; recommended ≤ 200.
+    documented: partial
+    source: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - id: context-document-formats
+    scope: payload
+    description: >-
+      Context document uploads accept .pdf, .jpg, .png, .docx, .doc.
+      Documents are parsed asynchronously and progress through PARSING ->
+      READY status. Maximum file size not publicly documented.
+    documented: true
+    source: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - id: audio-format-recommendation
+    scope: payload
+    description: >-
+      MP3 and OGG are the recommended formats for optimal transcription
+      quality. Other audio formats are accepted but may yield lower
+      transcript fidelity.
+    documented: true
+    source: https://www.heidihealth.com/developers/heidi-api/transcription
+sources:
+  - https://www.heidihealth.com/developers/heidi-api/overview
+  - https://www.heidihealth.com/developers/heidi-api/authentication
+  - https://www.heidihealth.com/developers/heidi-api/transcription
+  - https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - https://www.heidihealth.com/developers/heidi-api/consult-notes

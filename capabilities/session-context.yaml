@@ -1,0 +1,154 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Heidi Health — Session Context
+  description: 'Heidi Health Session Context API. Attach, list, and remove context documents (PDF/JPG/PNG/DOCX/DOC) and link prior sessions for context. Lead operation: Upload Context Document.'
+  tags:
+    - Heidi Health
+    - Sessions
+    - Context
+    - Attachments
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+  - namespace: env
+    keys:
+      HEIDI_BEARER_TOKEN: HEIDI_BEARER_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: heidi-session-context
+      baseUri: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+      description: Heidi Health session context surface.
+      resources:
+        - name: contextDocuments
+          path: /sessions/{session_id}/context-documents
+          operations:
+            - name: uploadContextDocument
+              method: POST
+              description: Upload a context document for a session.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+                - name: file
+                  in: body
+                  type: file
+                  required: true
+            - name: listContextDocuments
+              method: GET
+              description: List context documents for a session.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+            - name: deleteContextDocuments
+              method: DELETE
+              description: Delete context documents from a session.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+                - name: ids
+                  in: query
+                  type: array
+                  required: true
+      authentication:
+        type: bearer
+        value: '{{env.HEIDI_BEARER_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: heidi-session-context-rest
+      port: 8080
+      description: REST adapter for Heidi Session Context.
+      resources:
+        - path: /v1/sessions/{session_id}/context-documents
+          name: contextDocuments
+          operations:
+            - method: POST
+              name: uploadContextDocument
+              call: heidi-session-context.uploadContextDocument
+              with:
+                session_id: rest.path.session_id
+                file: rest.body.file
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: GET
+              name: listContextDocuments
+              call: heidi-session-context.listContextDocuments
+              with:
+                session_id: rest.path.session_id
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: DELETE
+              name: deleteContextDocuments
+              call: heidi-session-context.deleteContextDocuments
+              with:
+                session_id: rest.path.session_id
+                ids: rest.query.ids
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: heidi-session-context-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for Heidi Session Context.
+      tools:
+        - name: heidi-upload-context-document
+          description: Upload a context document to a Heidi session.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: heidi-session-context.uploadContextDocument
+          with:
+            session_id: tools.session_id
+            file: tools.file
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: heidi-list-context-documents
+          description: List context documents for a Heidi session.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: heidi-session-context.listContextDocuments
+          with:
+            session_id: tools.session_id
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: heidi-delete-context-documents
+          description: Delete context documents from a Heidi session.
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: false
+          call: heidi-session-context.deleteContextDocuments
+          with:
+            session_id: tools.session_id
+            ids: tools.ids
+          outputParameters:
+            - type: object
+              mapping: $.

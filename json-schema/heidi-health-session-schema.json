@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/heidi-health/main/json-schema/heidi-health-session-schema.json",
+  "title": "HeidiSession",
+  "description": "A Heidi clinical session — the central object grouping transcript, consult note, documents, audio, and context for a single clinical encounter.",
+  "type": "object",
+  "required": ["session_id"],
+  "properties": {
+    "session_id": { "type": "string", "description": "Unique session identifier." },
+    "patient_profile_id": { "type": ["string", "null"], "description": "Linked patient profile id." },
+    "ehr_appointment_id": { "type": ["string", "null"], "description": "External EHR appointment id." },
+    "ehr_patient_id": { "type": ["string", "null"], "description": "External EHR patient id." },
+    "duration": { "type": ["integer", "null"], "description": "Duration in seconds." },
+    "language_code": { "type": ["string", "null"], "description": "Input language code (e.g. en-US)." },
+    "output_language_code": { "type": ["string", "null"], "description": "Output language code." },
+    "consent_obtained": { "type": ["boolean", "null"], "description": "Whether patient consent was obtained." },
+    "clinician_notes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-text or Markdown clinician notes used as context."
+    },
+    "linked_sessions_for_context": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Other session ids whose consult notes are included as context."
+    },
+    "patient": {
+      "type": ["object", "null"],
+      "description": "Inline patient demographics snapshot.",
+      "properties": {
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" },
+        "date_of_birth": { "type": "string", "format": "date" },
+        "gender": { "type": "string" }
+      }
+    },
+    "consult_note": {
+      "type": ["object", "null"],
+      "description": "Generated consult note content and metadata."
+    },
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "heidi-health-document-schema.json" }
+    },
+    "audio": {
+      "type": ["object", "null"],
+      "description": "Audio asset metadata for the session."
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": true
+}

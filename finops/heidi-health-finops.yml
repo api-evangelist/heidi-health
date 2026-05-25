@@ -1,0 +1,108 @@
+aid: heidi-health
+specVersion: '0.1'
+focusVersion: '1.2'
+name: Heidi Health FinOps
+description: >-
+  FinOps view of Heidi Health's billing surface, aligned to the FinOps
+  Framework / FOCUS data spec. Heidi sells per-clinician subscriptions
+  (Free, Evidence Plus, Clinician, Enterprise) and partner integration
+  contracts (Heidi API, Heidi Widget) rather than per-call API metering.
+  The cost surface is dominated by paid per-clinician-month seats with a
+  zero-cost Free tier and custom Enterprise contracts that include EHR
+  integration, SSO, and hosting options. Public per-call API pricing is
+  not disclosed.
+url: https://www.heidihealth.com/pricing
+created: '2026-05-24'
+modified: '2026-05-24'
+billingModel: subscription
+metering:
+  - dimension: ServiceCategory
+    values:
+      - AI Medical Scribe
+      - Clinical Decision Support
+      - Clinical Communications
+      - EHR Integration Platform
+  - dimension: ServiceName
+    values:
+      - Heidi Scribe
+      - Heidi Evidence
+      - Heidi Comms
+      - Heidi Remote
+      - Heidi API
+      - Heidi Widget
+  - dimension: ChargeCategory
+    values:
+      - Subscription
+      - Usage
+      - Purchase
+  - dimension: PricingUnit
+    values:
+      - clinician/month
+      - device
+      - contract
+  - dimension: CommitmentDiscount
+    values:
+      - Annual prepay (typical for Enterprise)
+      - Volume discount (Enterprise tier)
+chargeTypes:
+  - id: free-tier
+    name: Free Tier
+    chargeCategory: Subscription
+    pricingQuantity: 1
+    pricingUnit: clinician/month
+    listPrice: 0
+    listUnitPrice: 0
+    currency: USD
+    description: Free unlimited transcription with standard templates.
+  - id: evidence-plus-subscription
+    name: Evidence Plus Subscription
+    chargeCategory: Subscription
+    pricingUnit: clinician/month
+    listPrice: undisclosed
+    currency: USD
+    description: Evidence add-on with citations and CPD/CME tracking. 14-day trial.
+  - id: clinician-subscription
+    name: Clinician Subscription
+    chargeCategory: Subscription
+    pricingUnit: clinician/month
+    listPrice: undisclosed
+    currency: USD
+    description: Full single-clinician experience with coding and team templates. 14-day trial.
+  - id: enterprise-contract
+    name: Enterprise Contract
+    chargeCategory: Subscription
+    pricingUnit: contract
+    listPrice: custom
+    currency: USD
+    description: Custom per-clinician pricing with EHR integration, SSO, dedicated CSM, custom hosting.
+  - id: heidi-remote-hardware
+    name: Heidi Remote Hardware
+    chargeCategory: Purchase
+    pricingUnit: device
+    listPrice: undisclosed
+    currency: USD
+    description: 21-gram wearable ambient microphone. Pricing not publicly disclosed.
+costReporting:
+  exportFormats:
+    - Stripe invoice (downloadable from in-product billing)
+    - Enterprise invoice (PDF, customisable terms)
+  reportingInterval: monthly
+  groupingDimensions:
+    - Plan / SKU
+    - User / Clinician seat
+    - Workspace / Organisation (Enterprise)
+allocation:
+  - Per-clinician seats allow chargeback to specific physicians or specialty groups
+  - Enterprise workspaces support team-level chargeback via centralised billing
+  - API/Widget integration costs are bundled into the Enterprise partnership contract
+  - Heidi Remote hardware is invoiced separately as a Purchase line item
+optimization:
+  - Use Free tier for low-volume or trial clinicians
+  - Convert 14-day trials before automatic billing kicks in
+  - Consolidate clinicians into Enterprise for centralised billing and volume pricing
+  - Negotiate annual prepay for Enterprise contracts
+  - Use Widget (lower engineering cost) where API-level customisation is not required
+sources:
+  - https://www.heidihealth.com/pricing
+  - https://www.heidihealth.com/contact-sales
+  - https://www.heidihealth.com/partners
