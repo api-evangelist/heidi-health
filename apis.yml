@@ -1,28 +1,20 @@
 aid: heidi-health
 name: Heidi Health
 description: >-
-  Heidi Health is a Melbourne, Australia-founded AI care partner for clinicians,
-  founded in 2019 by Dr. Tom Kelly (CEO), Waleed Mussa (CFO), and Yu Liu (CTO).
-  The product began as an ambient AI medical scribe and now spans four
-  capability surfaces: Scribe (real-time clinical documentation from audio),
-  Evidence (clinical decision support and literature lookup with citations),
-  Remote (a 21-gram wearable microphone with on-device encryption for offline
-  ambient capture), and Comms (clinical communications). The platform is used
-  by more than one million clinicians across 50+ countries spanning family
-  medicine, specialists, nursing, mental health, allied health, dentistry,
-  veterinary medicine, and trainees, and claims to have returned over 18
-  million hours of clinician time to date. Heidi exposes a public Heidi API
-  and embeddable Heidi Widget that EHR vendors, telehealth platforms, and
-  partners use to embed ambient documentation into their own workflows;
-  documented integrations include Epic (Hyperspace/Hyperdrive/Haiku), Oracle
-  Cerner (PowerChart/FirstNet), Athenahealth, eClinicalWorks (via Vim), Best
-  Practice, Medical Director, Gentu, Cliniko, Halaxy, MediRecords, and many
-  others. Heidi holds SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR, APP, PIPEDA,
-  NHS, Cyber Essentials+, UKCA, and Swiss FDPA attestations, has raised
-  approximately $80M across Seed, Series A (Blackbird), and a $65M Series B
-  led by Point72 Private Investments with Blackbird, Headline, and Latitude,
-  and recently announced a strategic partnership with R1 RCM to embed Heidi
-  into US revenue cycle management workflows.
+  Heidi Health is a Melbourne, Australia-founded AI care partner for clinicians, founded in 2019 by Dr. Tom Kelly (CEO),
+  Waleed Mussa (CFO), and Yu Liu (CTO). The product began as an ambient AI medical scribe and now spans four capability
+  surfaces: Scribe (real-time clinical documentation from audio), Evidence (clinical decision support and literature
+  lookup with citations), Remote (a 21-gram wearable microphone with on-device encryption for offline ambient capture),
+  and Comms (clinical communications). The platform is used by more than one million clinicians across 50+ countries
+  spanning family medicine, specialists, nursing, mental health, allied health, dentistry, veterinary medicine, and
+  trainees, and claims to have returned over 18 million hours of clinician time to date. Heidi exposes a public Heidi
+  API and embeddable Heidi Widget that EHR vendors, telehealth platforms, and partners use to embed ambient
+  documentation into their own workflows; documented integrations include Epic (Hyperspace/Hyperdrive/Haiku), Oracle
+  Cerner (PowerChart/FirstNet), Athenahealth, eClinicalWorks (via Vim), Best Practice, Medical Director, Gentu, Cliniko,
+  Halaxy, MediRecords, and many others. Heidi holds SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR, APP, PIPEDA, NHS, Cyber
+  Essentials+, UKCA, and Swiss FDPA attestations, has raised approximately $80M across Seed, Series A (Blackbird), and a
+  $65M Series B led by Point72 Private Investments with Blackbird, Headline, and Latitude, and recently announced a
+  strategic partnership with R1 RCM to embed Heidi into US revenue cycle management workflows.
 tags:
   - Healthcare
   - Health Tech
@@ -61,10 +53,9 @@ apis:
   - aid: heidi-health:heidi-api-authentication
     name: Heidi Authentication API
     description: >-
-      Exchange a tenant-scoped Heidi API key for a short-lived bearer JWT
-      bound to an EHR user (identified by email plus third-party internal
-      ID). The token is returned with its ISO 8601 expiration_time and used
-      in the Authorization header on every subsequent Heidi API call.
+      Exchange a tenant-scoped Heidi API key for a short-lived bearer JWT bound to an EHR user (identified by email plus
+      third-party internal ID). The token is returned with its ISO 8601 expiration_time and used in the Authorization
+      header on every subsequent Heidi API call.
     humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
     tags:
       - Authentication
@@ -76,17 +67,14 @@ apis:
         url: https://www.heidihealth.com/developers/heidi-api/authentication
       - type: OpenAPI
         url: openapi/heidi-health-openapi.yml
-      - type: NaftikoCapability
-        url: capabilities/authentication.yaml
       - type: Example
         url: examples/heidi-health-get-jwt-example.json
   - aid: heidi-health:heidi-api-templates
     name: Heidi Templates API
     description: >-
-      List consult-note templates available to the authenticated API user,
-      including Heidi-authored templates, organisation-shared templates, and
-      private clinician templates, with their structure, category, HTML
-      rendering, and authoring metadata.
+      List consult-note templates available to the authenticated API user, including Heidi-authored templates,
+      organisation-shared templates, and private clinician templates, with their structure, category, HTML rendering,
+      and authoring metadata.
     humanURL: https://www.heidihealth.com/developers/heidi-api/templates
     tags:
       - Templates
@@ -97,15 +85,12 @@ apis:
         url: https://www.heidihealth.com/developers/heidi-api/templates
       - type: OpenAPI
         url: openapi/heidi-health-openapi.yml
-      - type: NaftikoCapability
-        url: capabilities/templates.yaml
   - aid: heidi-health:heidi-api-patient-profiles
     name: Heidi Patient Profiles API
     description: >-
-      Manage longitudinal patient profiles independent of any single
-      session, including create, update, list, retrieve, batch-delete, and
-      link-sessions operations. Profiles can carry EHR patient identifiers
-      and provider context so sessions inherit patient history.
+      Manage longitudinal patient profiles independent of any single session, including create, update, list, retrieve,
+      batch-delete, and link-sessions operations. Profiles can carry EHR patient identifiers and provider context so
+      sessions inherit patient history.
     humanURL: https://www.heidihealth.com/developers/heidi-api/patient-profiles
     tags:
       - Patients
@@ -118,15 +103,12 @@ apis:
         url: openapi/heidi-health-openapi.yml
       - type: JSONSchema
         url: json-schema/heidi-health-patient-profile-schema.json
-      - type: NaftikoCapability
-        url: capabilities/patient-profiles.yaml
   - aid: heidi-health:heidi-api-sessions
     name: Heidi Sessions API
     description: >-
-      Create, update, retrieve, and list clinical sessions — the central
-      object that ties together transcription, consult notes, documents,
-      clinician notes, language settings, EHR identifiers, consent state,
-      and linked context sessions.
+      Create, update, retrieve, and list clinical sessions — the central object that ties together transcription,
+      consult notes, documents, clinician notes, language settings, EHR identifiers, consent state, and linked context
+      sessions.
     humanURL: https://www.heidihealth.com/developers/heidi-api/sessions/overview
     tags:
       - Sessions
@@ -140,17 +122,14 @@ apis:
         url: json-schema/heidi-health-session-schema.json
       - type: JSONStructure
         url: json-structure/heidi-health-session-structure.json
-      - type: NaftikoCapability
-        url: capabilities/sessions.yaml
       - type: Example
         url: examples/heidi-health-create-session-example.json
   - aid: heidi-health:heidi-api-session-context
     name: Heidi Session Context API
     description: >-
-      Attach contextual material to a session — free-text or Markdown
-      clinician notes, links to prior patient sessions, and uploaded
-      context documents (PDF, JPG, PNG, DOCX, DOC) — so Heidi's generation
-      grounds the consult note in the relevant patient background.
+      Attach contextual material to a session — free-text or Markdown clinician notes, links to prior patient sessions,
+      and uploaded context documents (PDF, JPG, PNG, DOCX, DOC) — so Heidi's generation grounds the consult note in the
+      relevant patient background.
     humanURL: https://www.heidihealth.com/developers/heidi-api/sessions/context
     tags:
       - Sessions
@@ -162,15 +141,12 @@ apis:
         url: https://www.heidihealth.com/developers/heidi-api/sessions/context
       - type: OpenAPI
         url: openapi/heidi-health-openapi.yml
-      - type: NaftikoCapability
-        url: capabilities/session-context.yaml
   - aid: heidi-health:heidi-api-session-coding
     name: Heidi Session Coding API
     description: >-
-      Generate clinical codes for a session across ICD-10, ICD-10-CM,
-      ICD-9, ICD-9-CM, SNOMED, SNOMED-CT, OPCS-410, ACHI-13, and CPT-2025,
-      returning a primary code, similar candidate codes, and citation
-      references back to the transcript and consult-note text.
+      Generate clinical codes for a session across ICD-10, ICD-10-CM, ICD-9, ICD-9-CM, SNOMED, SNOMED-CT, OPCS-410,
+      ACHI-13, and CPT-2025, returning a primary code, similar candidate codes, and citation references back to the
+      transcript and consult-note text.
     humanURL: https://www.heidihealth.com/developers/heidi-api/sessions/coding
     tags:
       - Clinical Coding
@@ -185,18 +161,14 @@ apis:
         url: openapi/heidi-health-openapi.yml
       - type: JSONSchema
         url: json-schema/heidi-health-clinical-code-schema.json
-      - type: NaftikoCapability
-        url: capabilities/clinical-coding.yaml
       - type: Example
         url: examples/heidi-health-get-clinical-codes-example.json
   - aid: heidi-health:heidi-api-transcription
     name: Heidi Transcription API
     description: >-
-      Submit consultation audio either as a single uploaded file (lazy
-      transcription on next GET) or in 45-second to 1-minute chunks for
-      live ambient capture, and retrieve either the finalised transcript or
-      a live chunked transcript stream with per-chunk status and source
-      provenance.
+      Submit consultation audio either as a single uploaded file (lazy transcription on next GET) or in 45-second to
+      1-minute chunks for live ambient capture, and retrieve either the finalised transcript or a live chunked
+      transcript stream with per-chunk status and source provenance.
     humanURL: https://www.heidihealth.com/developers/heidi-api/transcription
     tags:
       - Transcription
@@ -211,16 +183,12 @@ apis:
         url: openapi/heidi-health-openapi.yml
       - type: JSONSchema
         url: json-schema/heidi-health-transcript-schema.json
-      - type: NaftikoCapability
-        url: capabilities/transcription.yaml
   - aid: heidi-health:heidi-api-consult-notes
     name: Heidi Consult Notes API
     description: >-
-      Generate streamed consult notes from a session's transcript and
-      context, using either a Heidi or organisation template or a custom
-      client-supplied JSON template, with voice-style controls
-      (Goldilocks/Detailed/Brief/Super-Detailed/My Voice), brain selection
-      (Left/Right), and Markdown or HTML output.
+      Generate streamed consult notes from a session's transcript and context, using either a Heidi or organisation
+      template or a custom client-supplied JSON template, with voice-style controls
+      (Goldilocks/Detailed/Brief/Super-Detailed/My Voice), brain selection (Left/Right), and Markdown or HTML output.
     humanURL: https://www.heidihealth.com/developers/heidi-api/consult-notes
     tags:
       - Consult Notes
@@ -234,17 +202,13 @@ apis:
         url: openapi/heidi-health-openapi.yml
       - type: JSONSchema
         url: json-schema/heidi-health-consult-note-schema.json
-      - type: NaftikoCapability
-        url: capabilities/consult-notes.yaml
       - type: Example
         url: examples/heidi-health-generate-consult-note-example.json
   - aid: heidi-health:heidi-api-documents
     name: Heidi Documents API
     description: >-
-      Create and retrieve auxiliary template-driven documents associated
-      with a session (referral letters, patient handouts, billing
-      summaries, etc.) using the same voice-style, brain, and content-type
-      controls as consult notes.
+      Create and retrieve auxiliary template-driven documents associated with a session (referral letters, patient
+      handouts, billing summaries, etc.) using the same voice-style, brain, and content-type controls as consult notes.
     humanURL: https://www.heidihealth.com/developers/heidi-api/documents
     tags:
       - Documents
@@ -257,15 +221,12 @@ apis:
         url: openapi/heidi-health-openapi.yml
       - type: JSONSchema
         url: json-schema/heidi-health-document-schema.json
-      - type: NaftikoCapability
-        url: capabilities/documents.yaml
   - aid: heidi-health:heidi-api-ask-heidi
     name: Heidi Ask Heidi API
     description: >-
-      Stream AI-assistant responses scoped to a specific session, taking a
-      free-form instruction, contextual content (Markdown or HTML), and
-      returning the generated reply as a sequence of JSON data chunks
-      suitable for incremental UI rendering.
+      Stream AI-assistant responses scoped to a specific session, taking a free-form instruction, contextual content
+      (Markdown or HTML), and returning the generated reply as a sequence of JSON data chunks suitable for incremental
+      UI rendering.
     humanURL: https://www.heidihealth.com/developers/heidi-api/ask-heidi
     tags:
       - Ask Heidi
@@ -277,16 +238,12 @@ apis:
         url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
       - type: OpenAPI
         url: openapi/heidi-health-openapi.yml
-      - type: NaftikoCapability
-        url: capabilities/ask-heidi.yaml
   - aid: heidi-health:heidi-widget-sdk
     name: Heidi Widget SDK
     description: >-
-      Embeddable JavaScript widget for dropping Heidi's ambient
-      documentation experience directly into a web-based EHR or clinical
-      workflow with minimal engineering, with documented initialisation
-      options, methods/callbacks, patient-information parameters, and
-      TypeScript types.
+      Embeddable JavaScript widget for dropping Heidi's ambient documentation experience directly into a web-based EHR
+      or clinical workflow with minimal engineering, with documented initialisation options, methods/callbacks,
+      patient-information parameters, and TypeScript types.
     humanURL: https://www.heidihealth.com/developers/widget/overview
     tags:
       - Widget
@@ -392,7 +349,9 @@ common:
       - Heidi Evidence — clinical decision-support and literature lookup with transparent citations and CPD/CME tracking
       - Heidi Remote — 21-gram wearable microphone with offline capture and on-device encryption
       - Heidi Comms — clinical communications module
-      - Heidi API — public REST API at registrar.api.heidihealth.com for sessions, transcription, consult notes, documents, coding, Ask Heidi
+      - >-
+        Heidi API — public REST API at registrar.api.heidihealth.com for sessions, transcription, consult notes,
+        documents, coding, Ask Heidi
       - Heidi Widget — embeddable JavaScript widget for any web-based EHR
       - Custom JSON templates for organisation-specific consult-note structures
       - Multilingual transcription and output across 50+ countries
@@ -401,7 +360,9 @@ common:
       - Streamed generation responses for incremental UI rendering
       - Patient profiles linking many sessions to a single patient for longitudinal context
       - Context attachments (PDF, JPG, PNG, DOCX, DOC) per session
-      - EHR integrations spanning Epic, Cerner, Athenahealth, eClinicalWorks (via Vim), Best Practice, Medical Director, Gentu, Cliniko, Halaxy, MediRecords, and 15+ others
+      - >-
+        EHR integrations spanning Epic, Cerner, Athenahealth, eClinicalWorks (via Vim), Best Practice, Medical Director,
+        Gentu, Cliniko, Halaxy, MediRecords, and 15+ others
       - Free plan with unlimited transcription and standard templates
       - Evidence Plus, Clinician, and Enterprise paid tiers with 14-day trials
       - Enterprise features including SSO, centralised billing, custom hosting, dedicated CSM

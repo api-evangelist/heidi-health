@@ -1,0 +1,2649 @@
+{
+  "item": [
+    {
+      "id": "78bd4e3e-e447-441d-b08c-87789acbec82",
+      "name": "Authentication",
+      "description": {
+        "content": "Token exchange.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ecdd8ef2-cb58-4110-8300-20f3575efc2c",
+          "name": "Exchange API Key For JWT",
+          "request": {
+            "name": "Exchange API Key For JWT",
+            "description": {
+              "content": "Exchange a tenant Heidi API key for a short-lived bearer JWT bound to an EHR user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jwt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "third_party_internal_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Heidi-Api-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c9aa94ed-c2a2-4c24-b89d-03e812d95e31",
+              "name": "Token issued.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jwt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "third_party_internal_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Heidi-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"expiration_time\": \"1956-10-04T19:17:40.396Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fdf88606-8a63-45da-a104-f7694290bfa3",
+      "name": "Templates",
+      "description": {
+        "content": "Consult-note templates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9aa3b837-a574-4bb5-800e-1f24ce4742f3",
+          "name": "List Consult Note Templates",
+          "request": {
+            "name": "List Consult Note Templates",
+            "description": {},
+            "url": {
+              "path": [
+                "templates",
+                "document-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd3c9fac-aed0-4c59-843d-f12121aa7747",
+              "name": "Templates returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "document-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"structure_template\": {},\n      \"template_category\": \"DOCUMENT_TEMPLATE\",\n      \"template_html\": \"string\",\n      \"author_name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"structure_template\": {},\n      \"template_category\": \"DOCUMENT_TEMPLATE\",\n      \"template_html\": \"string\",\n      \"author_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "133c6e6c-978e-4c86-85fa-1746a7991ed4",
+      "name": "Patient Profiles",
+      "description": {
+        "content": "Longitudinal patient records.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f8547b4-e0f8-498b-93c4-d88c8d965bdc",
+          "name": "Create Patient Profile",
+          "request": {
+            "name": "Create Patient Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5280c31c-3a08-4c3d-adec-ec29d4fbe6db",
+              "name": "Patient profile created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"1964-01-03\",\n  \"gender\": \"string\",\n  \"ehr_patient_id\": \"string\",\n  \"provider\": \"string\",\n  \"id\": \"string\",\n  \"created_at\": \"1976-08-15T02:19:40.818Z\",\n  \"updated_at\": \"1953-05-07T17:52:12.777Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4662f52-d1f0-4c8f-b318-df40400330b8",
+          "name": "List Patient Profiles",
+          "request": {
+            "name": "List Patient Profiles",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ehr_patient_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da095b16-eafe-4e9f-9b43-9d17d94ce6be",
+              "name": "Patient profiles returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ehr_patient_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"date_of_birth\": \"2018-04-08\",\n      \"gender\": \"string\",\n      \"ehr_patient_id\": \"string\",\n      \"provider\": \"string\",\n      \"id\": \"string\",\n      \"created_at\": \"2020-02-07T23:42:31.254Z\",\n      \"updated_at\": \"2000-01-21T21:44:38.910Z\"\n    },\n    {\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"date_of_birth\": \"1979-06-09\",\n      \"gender\": \"string\",\n      \"ehr_patient_id\": \"string\",\n      \"provider\": \"string\",\n      \"id\": \"string\",\n      \"created_at\": \"2017-05-24T13:20:13.104Z\",\n      \"updated_at\": \"2018-08-21T13:11:04.110Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56dcc6c0-7e61-4bec-bf67-e58097c356b7",
+          "name": "Get Patient Profile",
+          "request": {
+            "name": "Get Patient Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles",
+                ":patient_profile_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_profile_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de926651-c450-42b2-8eae-4b23ce580dfe",
+              "name": "Patient profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles",
+                    ":patient_profile_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_profile_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"1964-01-03\",\n  \"gender\": \"string\",\n  \"ehr_patient_id\": \"string\",\n  \"provider\": \"string\",\n  \"id\": \"string\",\n  \"created_at\": \"1976-08-15T02:19:40.818Z\",\n  \"updated_at\": \"1953-05-07T17:52:12.777Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0207e8b-98a4-474b-9ec7-e4d22cfe29fe",
+          "name": "Update Patient Profile",
+          "request": {
+            "name": "Update Patient Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles",
+                ":patient_profile_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_profile_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8035873a-489c-480f-be19-d34862f5bdcc",
+              "name": "Patient profile updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles",
+                    ":patient_profile_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_profile_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"1996-03-28\",\n  \"gender\": \"string\",\n  \"ehr_patient_id\": \"string\",\n  \"provider\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"1964-01-03\",\n  \"gender\": \"string\",\n  \"ehr_patient_id\": \"string\",\n  \"provider\": \"string\",\n  \"id\": \"string\",\n  \"created_at\": \"1976-08-15T02:19:40.818Z\",\n  \"updated_at\": \"1953-05-07T17:52:12.777Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8d6d874-7ec1-4387-a6a0-0cad482e2fff",
+          "name": "Batch Delete Patient Profiles",
+          "request": {
+            "name": "Batch Delete Patient Profiles",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles:batch-delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_profile_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a60871a5-79a9-4b11-8830-756d3b84e172",
+              "name": "Profiles deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles:batch-delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_profile_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7a9a7b1-3005-4e1e-a2c1-994df8aba68f",
+          "name": "Link Session To Patient Profile",
+          "request": {
+            "name": "Link Session To Patient Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles",
+                ":patient_profile_id",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_profile_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "416826cf-4dbe-4870-be83-518603f696b7",
+              "name": "Session linked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles",
+                    ":patient_profile_id",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_profile_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7323aa42-c02e-427d-a76a-55c35cf9d374",
+      "name": "Sessions",
+      "description": {
+        "content": "Clinical session lifecycle.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74ce4c8a-a65a-4651-ad3a-64d16145f797",
+          "name": "Create Session",
+          "request": {
+            "name": "Create Session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_profile_id\": \"<string>\",\n  \"ehr_appointment_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07cc5c50-199a-455c-ae99-5e0c3d6de686",
+              "name": "Session created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_profile_id\": \"<string>\",\n  \"ehr_appointment_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"session_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f0cdc61-4713-4938-bce8-e40feb2fa3ba",
+          "name": "Get Session",
+          "request": {
+            "name": "Get Session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1bc504c-50f8-4d12-b665-c698cfe5443e",
+              "name": "Session details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"session_id\": \"string\",\n  \"patient\": {},\n  \"duration\": 4729,\n  \"language_code\": \"string\",\n  \"output_language_code\": \"string\",\n  \"clinician_notes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"consent_obtained\": false,\n  \"linked_sessions_for_context\": [\n    \"string\",\n    \"string\"\n  ],\n  \"consult_note\": {},\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"index\": 9505,\n      \"name\": \"string\",\n      \"template_id\": \"string\",\n      \"generation_type\": \"string\",\n      \"content\": \"string\",\n      \"content_type\": \"MARKDOWN\"\n    },\n    {\n      \"id\": \"string\",\n      \"index\": 2582,\n      \"name\": \"string\",\n      \"template_id\": \"string\",\n      \"generation_type\": \"string\",\n      \"content\": \"string\",\n      \"content_type\": \"MARKDOWN\"\n    }\n  ],\n  \"audio\": {},\n  \"created_at\": \"1973-02-01T16:59:00.324Z\",\n  \"updated_at\": \"2021-08-04T21:41:36.197Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6a71f4d-9a2f-4c89-bde3-470e45f5169a",
+          "name": "Update Session",
+          "request": {
+            "name": "Update Session",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"duration\": \"<integer>\",\n  \"language_code\": \"<string>\",\n  \"output_language_code\": \"<string>\",\n  \"patient\": \"<object>\",\n  \"clinician_notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ehr_appointment_id\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"consent_obtained\": \"<boolean>\",\n  \"linked_sessions_for_context\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4503e23-836a-4915-ab7f-7f767a2cc10c",
+              "name": "Session updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"duration\": \"<integer>\",\n  \"language_code\": \"<string>\",\n  \"output_language_code\": \"<string>\",\n  \"patient\": \"<object>\",\n  \"clinician_notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ehr_appointment_id\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"consent_obtained\": \"<boolean>\",\n  \"linked_sessions_for_context\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"session_id\": \"string\",\n  \"patient\": {},\n  \"duration\": 4729,\n  \"language_code\": \"string\",\n  \"output_language_code\": \"string\",\n  \"clinician_notes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"consent_obtained\": false,\n  \"linked_sessions_for_context\": [\n    \"string\",\n    \"string\"\n  ],\n  \"consult_note\": {},\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"index\": 9505,\n      \"name\": \"string\",\n      \"template_id\": \"string\",\n      \"generation_type\": \"string\",\n      \"content\": \"string\",\n      \"content_type\": \"MARKDOWN\"\n    },\n    {\n      \"id\": \"string\",\n      \"index\": 2582,\n      \"name\": \"string\",\n      \"template_id\": \"string\",\n      \"generation_type\": \"string\",\n      \"content\": \"string\",\n      \"content_type\": \"MARKDOWN\"\n    }\n  ],\n  \"audio\": {},\n  \"created_at\": \"1973-02-01T16:59:00.324Z\",\n  \"updated_at\": \"2021-08-04T21:41:36.197Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f1c5fd8-faa1-450f-952d-f39eaf8d8bd0",
+          "name": "List Linked User Sessions",
+          "request": {
+            "name": "List Linked User Sessions",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                "linked-user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40b697e0-a09a-48f5-9c37-f4bab7f1523c",
+              "name": "Paginated list of sessions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "linked-user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5476,\n  \"total_count\": 8252,\n  \"has_next\": false,\n  \"has_previous\": false,\n  \"data\": [\n    {\n      \"session_id\": \"string\",\n      \"patient\": {},\n      \"duration\": 5427,\n      \"language_code\": \"string\",\n      \"output_language_code\": \"string\",\n      \"clinician_notes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"consent_obtained\": false,\n      \"linked_sessions_for_context\": [\n        \"string\",\n        \"string\"\n      ],\n      \"consult_note\": {},\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"index\": 8662,\n          \"name\": \"string\",\n          \"template_id\": \"string\",\n          \"generation_type\": \"string\",\n          \"content\": \"string\",\n          \"content_type\": \"MARKDOWN\"\n        },\n        {\n          \"id\": \"string\",\n          \"index\": 8686,\n          \"name\": \"string\",\n          \"template_id\": \"string\",\n          \"generation_type\": \"string\",\n          \"content\": \"string\",\n          \"content_type\": \"MARKDOWN\"\n        }\n      ],\n      \"audio\": {},\n      \"created_at\": \"1948-04-21T15:06:19.608Z\",\n      \"updated_at\": \"2016-08-13T20:24:15.180Z\"\n    },\n    {\n      \"session_id\": \"string\",\n      \"patient\": {},\n      \"duration\": 7780,\n      \"language_code\": \"string\",\n      \"output_language_code\": \"string\",\n      \"clinician_notes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"consent_obtained\": true,\n      \"linked_sessions_for_context\": [\n        \"string\",\n        \"string\"\n      ],\n      \"consult_note\": {},\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"index\": 5646,\n          \"name\": \"string\",\n          \"template_id\": \"string\",\n          \"generation_type\": \"string\",\n          \"content\": \"string\",\n          \"content_type\": \"MARKDOWN\"\n        },\n        {\n          \"id\": \"string\",\n          \"index\": 302,\n          \"name\": \"string\",\n          \"template_id\": \"string\",\n          \"generation_type\": \"string\",\n          \"content\": \"string\",\n          \"content_type\": \"HTML\"\n        }\n      ],\n      \"audio\": {},\n      \"created_at\": \"2019-02-21T13:48:40.968Z\",\n      \"updated_at\": \"1979-10-02T08:53:50.565Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d32ded29-5675-4150-9e59-c14cb59864fb",
+      "name": "Session Context",
+      "description": {
+        "content": "Notes, linked sessions, and context document attachments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2bd44deb-dfca-498d-892d-9745e5eed87c",
+          "name": "Upload Context Document",
+          "request": {
+            "name": "Upload Context Document",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "context-documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                },
+                {
+                  "key": "unstructured",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b1991682-8c70-4d48-9689-bcd108b502ad",
+              "name": "Document uploaded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "context-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "unstructured",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"filename\": \"string\",\n  \"uploaded_at\": \"2016-07-28T11:33:56.618Z\",\n  \"status\": \"READY\",\n  \"unstructured\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "306eaced-6cc1-4916-a8da-3039cc71771b",
+          "name": "List Context Documents",
+          "request": {
+            "name": "List Context Documents",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "context-documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "207d2dc2-75bf-4db0-98b1-2fc156b8e9fd",
+              "name": "Context documents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "context-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"filename\": \"string\",\n      \"uploaded_at\": \"2024-01-10T19:35:28.195Z\",\n      \"status\": \"PARSING\",\n      \"unstructured\": true\n    },\n    {\n      \"id\": \"string\",\n      \"filename\": \"string\",\n      \"uploaded_at\": \"1998-02-12T18:33:33.280Z\",\n      \"status\": \"PARSING\",\n      \"unstructured\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d1c3256-a5c4-411e-ab81-ec12f624384a",
+          "name": "Delete Context Documents",
+          "request": {
+            "name": "Delete Context Documents",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "context-documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db4a85bc-8c1c-4eb0-832c-1dbac74eba41",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "context-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ed29fc05-2994-4302-af62-42dea4971cfe",
+      "name": "Transcription",
+      "description": {
+        "content": "Audio upload and transcript retrieval.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0ebfe0b-dc27-440a-8ed9-9e546778e49b",
+          "name": "Upload Session Audio",
+          "request": {
+            "name": "Upload Session Audio",
+            "description": {
+              "content": "Upload a full audio file (MP3 or OGG recommended) for lazy transcription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "upload-audio"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5f61c47a-dea8-4cbc-890a-d898daf3cedd",
+              "name": "Audio stored.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "upload-audio"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73bd9106-ab59-46c9-8f05-4450667f8f0a",
+          "name": "Get Session Transcript",
+          "request": {
+            "name": "Get Session Transcript",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "transcript"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "953fd56e-de2b-4763-829a-40dae8c83c99",
+              "name": "Final transcript.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "transcript"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"session_id\": \"string\",\n  \"transcript\": \"string\",\n  \"language_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1eb9f540-e7df-4b42-b1e9-2c0469bb0f6c",
+          "name": "Get Live Session Transcript",
+          "request": {
+            "name": "Get Live Session Transcript",
+            "description": {
+              "content": "Chunked live transcript with per-chunk status and source.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "transcript",
+                "live"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e17f09b-7e5f-4f63-86ee-27bc2a6c0409",
+              "name": "Chunked live transcript.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "transcript",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"session_id\": \"string\",\n  \"transcript\": \"string\",\n  \"active_source\": \"USER_UPLOADED\",\n  \"chunks\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"READY\",\n      \"duration\": 4277.923150009629,\n      \"text\": \"string\",\n      \"source\": \"BACKUP\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"READY\",\n      \"duration\": 7417.769221671921,\n      \"text\": \"string\",\n      \"source\": \"BACKUP\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6391993e-e825-4341-ae46-88a1e99ddc1d",
+      "name": "Consult Notes",
+      "description": {
+        "content": "Streamed consult-note generation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bae1fb2d-2477-43f1-b9e5-33802fb94715",
+          "name": "Generate Consult Note",
+          "request": {
+            "name": "Generate Consult Note",
+            "description": {
+              "content": "Stream a consult note generated from the session's transcript and context.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "consult-note"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/x-ndjson"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"generation_method\": \"<string>\",\n  \"addition\": \"<string>\",\n  \"voice_style\": \"<string>\",\n  \"brain\": \"LEFT\",\n  \"template_id\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "acfa09b8-0ed7-4434-97c2-b0e9c2d6400f",
+              "name": "Streamed consult-note chunks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "consult-note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/x-ndjson"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"generation_method\": \"<string>\",\n  \"addition\": \"<string>\",\n  \"voice_style\": \"<string>\",\n  \"brain\": \"LEFT\",\n  \"template_id\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/x-ndjson"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1a8e689-462a-4a11-b13e-0ef5a90b76f7",
+          "name": "Generate Custom Template Consult Note",
+          "request": {
+            "name": "Generate Custom Template Consult Note",
+            "description": {
+              "content": "Generate a consult note against a client-supplied JSON template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "client-customised-template",
+                "response"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"<object>\",\n  \"content_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fbc34b64-5200-4e25-b60b-11322ee3be77",
+              "name": "Generated structured response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "client-customised-template",
+                    "response"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"template\": \"<object>\",\n  \"content_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0e8b950f-a228-4cb8-b595-28990c8ce368",
+      "name": "Documents",
+      "description": {
+        "content": "Auxiliary template-driven documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "937eb4ab-a3b9-44cd-9ce5-c5e6c8ddb672",
+          "name": "Generate Document",
+          "request": {
+            "name": "Generate Document",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"generation_method\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"voice_style\": \"<string>\",\n  \"brain\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3558dab5-5560-4998-9800-97172e6b9b2b",
+              "name": "Document generated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"generation_method\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"voice_style\": \"<string>\",\n  \"brain\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"index\": 9426,\n  \"name\": \"string\",\n  \"template_id\": \"string\",\n  \"generation_type\": \"string\",\n  \"content\": \"string\",\n  \"content_type\": \"HTML\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19f41d19-6a4c-4920-b33d-23e2d774cbef",
+          "name": "List Session Documents",
+          "request": {
+            "name": "List Session Documents",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da29eda2-5aa1-4875-866d-78c31a438d97",
+              "name": "Documents linked to session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"index\": 6035,\n      \"name\": \"string\",\n      \"template_id\": \"string\",\n      \"generation_type\": \"string\",\n      \"content\": \"string\",\n      \"content_type\": \"MARKDOWN\"\n    },\n    {\n      \"id\": \"string\",\n      \"index\": 970,\n      \"name\": \"string\",\n      \"template_id\": \"string\",\n      \"generation_type\": \"string\",\n      \"content\": \"string\",\n      \"content_type\": \"MARKDOWN\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e31c96e3-c9ec-4f7b-936e-405655531b16",
+      "name": "Clinical Coding",
+      "description": {
+        "content": "ICD/SNOMED/CPT and related code generation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb4d4c72-3a53-4e4b-b08b-22abac057b78",
+          "name": "Get Clinical Codes",
+          "request": {
+            "name": "Get Clinical Codes",
+            "description": {
+              "content": "Generate clinical codes for the session across the requested coding system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "clinical-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "coding_system",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0fdfd555-36da-49f7-b646-955f6f490f94",
+              "name": "Clinical codes for session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "clinical-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coding_system",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coding_system\": \"string\",\n  \"status\": \"PROCESSING\",\n  \"entities\": [\n    {\n      \"entity\": \"string\",\n      \"primary_code\": {\n        \"code\": \"string\",\n        \"description\": \"string\",\n        \"coding_system\": \"string\",\n        \"effective_date\": \"1952-11-29\",\n        \"valid\": false,\n        \"hierarchy\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"similar_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"coding_system\": \"string\",\n          \"effective_date\": \"1986-07-30\",\n          \"valid\": true,\n          \"hierarchy\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"coding_system\": \"string\",\n          \"effective_date\": \"1983-07-05\",\n          \"valid\": true,\n          \"hierarchy\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"references\": [\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"string\",\n          \"start\": 9272,\n          \"end\": 7675\n        },\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"string\",\n          \"start\": 5775,\n          \"end\": 6233\n        }\n      ]\n    },\n    {\n      \"entity\": \"string\",\n      \"primary_code\": {\n        \"code\": \"string\",\n        \"description\": \"string\",\n        \"coding_system\": \"string\",\n        \"effective_date\": \"1983-01-06\",\n        \"valid\": false,\n        \"hierarchy\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"similar_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"coding_system\": \"string\",\n          \"effective_date\": \"2012-04-22\",\n          \"valid\": false,\n          \"hierarchy\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"coding_system\": \"string\",\n          \"effective_date\": \"2010-04-15\",\n          \"valid\": false,\n          \"hierarchy\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"references\": [\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"string\",\n          \"start\": 2288,\n          \"end\": 5770\n        },\n        {\n          \"source\": \"TRANSCRIPT\",\n          \"text\": \"string\",\n          \"start\": 5146,\n          \"end\": 7943\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cea4f250-50a4-4a9d-a807-3e7283f17652",
+      "name": "Ask Heidi",
+      "description": {
+        "content": "Streamed AI-assistant responses scoped to a session.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ac82567-9b23-4087-986a-e6835637d335",
+          "name": "Ask Heidi",
+          "request": {
+            "name": "Ask Heidi",
+            "description": {
+              "content": "Stream an AI-assistant response scoped to the session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "ask-ai"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/x-ndjson"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ai_command_text\": \"<string>\",\n  \"content\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6778e4a4-3c53-4079-abac-a46a0386a4f3",
+              "name": "Streamed AI response chunks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "ask-ai"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/x-ndjson"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ai_command_text\": \"<string>\",\n  \"content\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/x-ndjson"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2547ae1-9ae6-4d6e-8e3c-6b01c29a1856",
+    "name": "Heidi Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+      "type": "text/plain"
+    }
+  }
+}
