@@ -45,7 +45,7 @@ url: https://raw.githubusercontent.com/api-evangelist/heidi-health/refs/heads/ma
 created: '2026-05-24'
 modified: '2026-05-24'
 specificationVersion: '0.20'
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 kind: contract
 position: Provider
 access: 3rd-Party
