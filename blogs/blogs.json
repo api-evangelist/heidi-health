@@ -2,11 +2,11 @@
   "repo": "heidi-health",
   "feeds": [
     {
-      "source": "https://www.heidihealth.com/blog",
+      "source": "https://www.heidihealth.com/blog/rss.xml",
       "feed_url": "https://www.heidihealth.com/blog/rss.xml",
       "title": "",
-      "saved": 3,
-      "method": "discovered"
+      "saved": 4,
+      "method": "feed"
     },
     {
       "source": "https://www.heidihealth.com/pricing",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 5,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 11,
+  "fetched": "2026-06-27T12:03:07Z"
 }

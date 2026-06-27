@@ -67,7 +67,7 @@ apis:
         url: https://www.heidihealth.com/developers/heidi-api/authentication
       - type: OpenAPI
         url: openapi/heidi-health-openapi.yml
-      - type: Example
+      - type: Examples
         url: examples/heidi-health-get-jwt-example.json
   - aid: heidi-health:heidi-api-templates
     name: Heidi Templates API
@@ -122,7 +122,7 @@ apis:
         url: json-schema/heidi-health-session-schema.json
       - type: JSONStructure
         url: json-structure/heidi-health-session-structure.json
-      - type: Example
+      - type: Examples
         url: examples/heidi-health-create-session-example.json
   - aid: heidi-health:heidi-api-session-context
     name: Heidi Session Context API
@@ -161,7 +161,7 @@ apis:
         url: openapi/heidi-health-openapi.yml
       - type: JSONSchema
         url: json-schema/heidi-health-clinical-code-schema.json
-      - type: Example
+      - type: Examples
         url: examples/heidi-health-get-clinical-codes-example.json
   - aid: heidi-health:heidi-api-transcription
     name: Heidi Transcription API
@@ -202,7 +202,7 @@ apis:
         url: openapi/heidi-health-openapi.yml
       - type: JSONSchema
         url: json-schema/heidi-health-consult-note-schema.json
-      - type: Example
+      - type: Examples
         url: examples/heidi-health-generate-consult-note-example.json
   - aid: heidi-health:heidi-api-documents
     name: Heidi Documents API
@@ -273,7 +273,7 @@ common:
     url: https://www.heidihealth.com/developers/heidi-api/overview
   - type: Documentation
     url: https://www.heidihealth.com/developers/faq
-  - type: SignUp
+  - type: Signup
     url: https://scribe.heidihealth.com/register
   - type: Login
     url: https://scribe.heidihealth.com/login
