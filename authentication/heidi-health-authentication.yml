@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/heidi-health-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: heidiApiKey
+  type: apiKey
+  in: header
+  parameter: Heidi-Api-Key
+  sources:
+  - openapi/heidi-health-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/heidi-health-openapi.yml

@@ -265,6 +265,12 @@ apis:
       - type: Documentation
         url: https://www.heidihealth.com/developers/widget/sdk-specification/types
 common:
+  - type: VulnerabilityDisclosure
+    url: security/heidi-health-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/heidi-health-domain-security.yml
+  - type: Authentication
+    url: authentication/heidi-health-authentication.yml
   - type: Website
     url: https://www.heidihealth.com
   - type: Portal
