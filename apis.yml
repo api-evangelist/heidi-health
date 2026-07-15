@@ -265,6 +265,8 @@ apis:
       - type: Documentation
         url: https://www.heidihealth.com/developers/widget/sdk-specification/types
 common:
+  - type: AgenticAccess
+    url: agentic-access/heidi-health-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/heidi-health-vulnerability-disclosure.yml
   - type: DomainSecurity
