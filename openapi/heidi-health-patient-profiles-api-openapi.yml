@@ -1,0 +1,212 @@
+openapi: 3.1.0
+info:
+  title: Heidi Health Ask Heidi Patient Profiles API
+  version: v2
+  summary: Public Heidi REST API for ambient AI medical scribe, transcription, consult notes, documents, clinical coding, and Ask Heidi.
+  description: 'The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician
+
+    tools) drive Heidi''s ambient documentation engine end-to-end:
+
+    authentication via tenant API key + per-user JWT, patient profile
+
+    management, session lifecycle (create, update, list, retrieve),
+
+    contextual attachments and linked sessions, audio upload (single file or
+
+    chunked live), transcript retrieval (final or live-chunked), template
+
+    discovery, streamed consult-note and document generation against Heidi
+
+    or custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT
+
+    and others), and streamed Ask Heidi assistant responses.
+
+
+    Documentation: https://www.heidihealth.com/developers/heidi-api/overview
+
+    '
+  contact:
+    name: Heidi Health Support
+    url: https://support.heidihealth.com
+  license:
+    name: Heidi Health Terms of Service
+    url: https://www.heidihealth.com/legal/terms-of-service
+servers:
+- url: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Patient Profiles
+  description: Longitudinal patient records.
+paths:
+  /patient-profiles:
+    post:
+      tags:
+      - Patient Profiles
+      summary: Create Patient Profile
+      operationId: createPatientProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientProfileCreate'
+      responses:
+        '200':
+          description: Patient profile created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientProfile'
+    get:
+      tags:
+      - Patient Profiles
+      summary: List Patient Profiles
+      operationId: listPatientProfiles
+      parameters:
+      - in: query
+        name: ehr_patient_id
+        schema:
+          type: string
+      - in: query
+        name: provider
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Patient profiles returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PatientProfile'
+  /patient-profiles/{patient_profile_id}:
+    get:
+      tags:
+      - Patient Profiles
+      summary: Get Patient Profile
+      operationId: getPatientProfile
+      parameters:
+      - $ref: '#/components/parameters/PatientProfileId'
+      responses:
+        '200':
+          description: Patient profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientProfile'
+    patch:
+      tags:
+      - Patient Profiles
+      summary: Update Patient Profile
+      operationId: updatePatientProfile
+      parameters:
+      - $ref: '#/components/parameters/PatientProfileId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientProfileUpdate'
+      responses:
+        '200':
+          description: Patient profile updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientProfile'
+  /patient-profiles:batch-delete:
+    post:
+      tags:
+      - Patient Profiles
+      summary: Batch Delete Patient Profiles
+      operationId: batchDeletePatientProfiles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patient_profile_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Profiles deleted.
+  /patient-profiles/{patient_profile_id}/sessions:
+    post:
+      tags:
+      - Patient Profiles
+      summary: Link Session To Patient Profile
+      operationId: linkSessionToPatientProfile
+      parameters:
+      - $ref: '#/components/parameters/PatientProfileId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+      responses:
+        '200':
+          description: Session linked.
+components:
+  schemas:
+    PatientProfileCreate:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        gender:
+          type: string
+        ehr_patient_id:
+          type: string
+        provider:
+          type: string
+    PatientProfileUpdate:
+      allOf:
+      - $ref: '#/components/schemas/PatientProfileCreate'
+    PatientProfile:
+      allOf:
+      - $ref: '#/components/schemas/PatientProfileCreate'
+      - type: object
+        properties:
+          id:
+            type: string
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
+  parameters:
+    PatientProfileId:
+      in: path
+      name: patient_profile_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    heidiApiKey:
+      type: apiKey
+      in: header
+      name: Heidi-Api-Key
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

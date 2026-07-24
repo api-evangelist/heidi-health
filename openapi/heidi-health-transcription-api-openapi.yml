@@ -1,0 +1,158 @@
+openapi: 3.1.0
+info:
+  title: Heidi Health Ask Heidi Transcription API
+  version: v2
+  summary: Public Heidi REST API for ambient AI medical scribe, transcription, consult notes, documents, clinical coding, and Ask Heidi.
+  description: 'The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician
+
+    tools) drive Heidi''s ambient documentation engine end-to-end:
+
+    authentication via tenant API key + per-user JWT, patient profile
+
+    management, session lifecycle (create, update, list, retrieve),
+
+    contextual attachments and linked sessions, audio upload (single file or
+
+    chunked live), transcript retrieval (final or live-chunked), template
+
+    discovery, streamed consult-note and document generation against Heidi
+
+    or custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT
+
+    and others), and streamed Ask Heidi assistant responses.
+
+
+    Documentation: https://www.heidihealth.com/developers/heidi-api/overview
+
+    '
+  contact:
+    name: Heidi Health Support
+    url: https://support.heidihealth.com
+  license:
+    name: Heidi Health Terms of Service
+    url: https://www.heidihealth.com/legal/terms-of-service
+servers:
+- url: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Transcription
+  description: Audio upload and transcript retrieval.
+paths:
+  /sessions/{session_id}/upload-audio:
+    post:
+      tags:
+      - Transcription
+      summary: Upload Session Audio
+      description: Upload a full audio file (MP3 or OGG recommended) for lazy transcription.
+      operationId: uploadSessionAudio
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Audio stored.
+  /sessions/{session_id}/transcript:
+    get:
+      tags:
+      - Transcription
+      summary: Get Session Transcript
+      operationId: getSessionTranscript
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Final transcript.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcript'
+  /sessions/{session_id}/transcript/live:
+    get:
+      tags:
+      - Transcription
+      summary: Get Live Session Transcript
+      description: Chunked live transcript with per-chunk status and source.
+      operationId: getLiveSessionTranscript
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Chunked live transcript.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveTranscript'
+components:
+  schemas:
+    LiveTranscript:
+      type: object
+      properties:
+        session_id:
+          type: string
+        transcript:
+          type: string
+        active_source:
+          type: string
+          enum:
+          - USER_UPLOADED
+          - LIVE
+          - BACKUP
+        chunks:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              status:
+                type: string
+                enum:
+                - PENDING
+                - READY
+                - FAILED
+              duration:
+                type: number
+              text:
+                type: string
+              source:
+                type: string
+                enum:
+                - USER_UPLOADED
+                - LIVE
+                - BACKUP
+    Transcript:
+      type: object
+      properties:
+        session_id:
+          type: string
+        transcript:
+          type: string
+        language_code:
+          type: string
+  parameters:
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    heidiApiKey:
+      type: apiKey
+      in: header
+      name: Heidi-Api-Key
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

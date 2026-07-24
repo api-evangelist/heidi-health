@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: Heidi Health Ask Heidi Authentication API
+  version: v2
+  summary: Public Heidi REST API for ambient AI medical scribe, transcription, consult notes, documents, clinical coding, and Ask Heidi.
+  description: 'The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician
+
+    tools) drive Heidi''s ambient documentation engine end-to-end:
+
+    authentication via tenant API key + per-user JWT, patient profile
+
+    management, session lifecycle (create, update, list, retrieve),
+
+    contextual attachments and linked sessions, audio upload (single file or
+
+    chunked live), transcript retrieval (final or live-chunked), template
+
+    discovery, streamed consult-note and document generation against Heidi
+
+    or custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT
+
+    and others), and streamed Ask Heidi assistant responses.
+
+
+    Documentation: https://www.heidihealth.com/developers/heidi-api/overview
+
+    '
+  contact:
+    name: Heidi Health Support
+    url: https://support.heidihealth.com
+  license:
+    name: Heidi Health Terms of Service
+    url: https://www.heidihealth.com/legal/terms-of-service
+servers:
+- url: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Authentication
+  description: Token exchange.
+paths:
+  /jwt:
+    get:
+      tags:
+      - Authentication
+      summary: Exchange API Key For JWT
+      description: Exchange a tenant Heidi API key for a short-lived bearer JWT bound to an EHR user.
+      operationId: getJwt
+      security:
+      - heidiApiKey: []
+      parameters:
+      - in: query
+        name: email
+        required: true
+        schema:
+          type: string
+          format: email
+      - in: query
+        name: third_party_internal_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Jwt'
+components:
+  schemas:
+    Jwt:
+      type: object
+      required:
+      - token
+      - expiration_time
+      properties:
+        token:
+          type: string
+        expiration_time:
+          type: string
+          format: date-time
+  securitySchemes:
+    heidiApiKey:
+      type: apiKey
+      in: header
+      name: Heidi-Api-Key
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

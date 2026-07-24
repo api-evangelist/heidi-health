@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: Heidi Health Ask Heidi Documents API
+  version: v2
+  summary: Public Heidi REST API for ambient AI medical scribe, transcription, consult notes, documents, clinical coding, and Ask Heidi.
+  description: 'The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician
+
+    tools) drive Heidi''s ambient documentation engine end-to-end:
+
+    authentication via tenant API key + per-user JWT, patient profile
+
+    management, session lifecycle (create, update, list, retrieve),
+
+    contextual attachments and linked sessions, audio upload (single file or
+
+    chunked live), transcript retrieval (final or live-chunked), template
+
+    discovery, streamed consult-note and document generation against Heidi
+
+    or custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT
+
+    and others), and streamed Ask Heidi assistant responses.
+
+
+    Documentation: https://www.heidihealth.com/developers/heidi-api/overview
+
+    '
+  contact:
+    name: Heidi Health Support
+    url: https://support.heidihealth.com
+  license:
+    name: Heidi Health Terms of Service
+    url: https://www.heidihealth.com/legal/terms-of-service
+servers:
+- url: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+  description: Auxiliary template-driven documents.
+paths:
+  /sessions/{session_id}/documents:
+    post:
+      tags:
+      - Documents
+      summary: Generate Document
+      operationId: generateDocument
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentGenerate'
+      responses:
+        '200':
+          description: Document generated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+    get:
+      tags:
+      - Documents
+      summary: List Session Documents
+      operationId: listSessionDocuments
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Documents linked to session.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Document'
+components:
+  schemas:
+    DocumentGenerate:
+      type: object
+      required:
+      - generation_method
+      - template_id
+      - voice_style
+      - brain
+      properties:
+        generation_method:
+          type: string
+          enum:
+          - TEMPLATE
+        template_id:
+          type: string
+        voice_style:
+          type: string
+          enum:
+          - GOLDILOCKS
+          - DETAILED
+          - BRIEF
+          - SUPER_DETAILED
+          - MY_VOICE
+        brain:
+          type: string
+          enum:
+          - LEFT
+          - RIGHT
+        content_type:
+          type: string
+          enum:
+          - MARKDOWN
+          - HTML
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        index:
+          type: integer
+        name:
+          type: string
+        template_id:
+          type: string
+        generation_type:
+          type: string
+        content:
+          type: string
+        content_type:
+          type: string
+          enum:
+          - MARKDOWN
+          - HTML
+  parameters:
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    heidiApiKey:
+      type: apiKey
+      in: header
+      name: Heidi-Api-Key
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
