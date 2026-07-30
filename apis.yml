@@ -42,229 +42,566 @@ tags:
   - Australia
   - Melbourne
 url: https://raw.githubusercontent.com/api-evangelist/heidi-health/refs/heads/main/apis.yml
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 created: '2026-05-24'
 modified: '2026-05-24'
 specificationVersion: '0.20'
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/heidi-health.png
 kind: contract
 position: Provider
 access: 3rd-Party
 apis:
-  - aid: heidi-health:heidi-api-authentication
-    name: Heidi Authentication API
-    description: >-
-      Exchange a tenant-scoped Heidi API key for a short-lived bearer JWT bound to an EHR user (identified by email plus
-      third-party internal ID). The token is returned with its ISO 8601 expiration_time and used in the Authorization
-      header on every subsequent Heidi API call.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
-    tags:
-      - Authentication
-      - Authorization
-      - JWT
-      - API Keys
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/authentication
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-      - type: Examples
-        url: examples/heidi-health-get-jwt-example.json
-  - aid: heidi-health:heidi-api-templates
-    name: Heidi Templates API
-    description: >-
-      List consult-note templates available to the authenticated API user, including Heidi-authored templates,
-      organisation-shared templates, and private clinician templates, with their structure, category, HTML rendering,
-      and authoring metadata.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/templates
-    tags:
-      - Templates
-      - Consult Notes
-      - Documentation
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/templates
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-  - aid: heidi-health:heidi-api-patient-profiles
-    name: Heidi Patient Profiles API
-    description: >-
-      Manage longitudinal patient profiles independent of any single session, including create, update, list, retrieve,
-      batch-delete, and link-sessions operations. Profiles can carry EHR patient identifiers and provider context so
-      sessions inherit patient history.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/patient-profiles
-    tags:
-      - Patients
-      - Patient Profiles
-      - EHR
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-      - type: JSONSchema
-        url: json-schema/heidi-health-patient-profile-schema.json
-  - aid: heidi-health:heidi-api-sessions
-    name: Heidi Sessions API
-    description: >-
-      Create, update, retrieve, and list clinical sessions — the central object that ties together transcription,
-      consult notes, documents, clinician notes, language settings, EHR identifiers, consent state, and linked context
-      sessions.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/sessions/overview
-    tags:
-      - Sessions
-      - Clinical Encounters
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-      - type: JSONSchema
-        url: json-schema/heidi-health-session-schema.json
-      - type: JSONStructure
-        url: json-structure/heidi-health-session-structure.json
-      - type: Examples
-        url: examples/heidi-health-create-session-example.json
-  - aid: heidi-health:heidi-api-session-context
-    name: Heidi Session Context API
-    description: >-
-      Attach contextual material to a session — free-text or Markdown clinician notes, links to prior patient sessions,
-      and uploaded context documents (PDF, JPG, PNG, DOCX, DOC) — so Heidi's generation grounds the consult note in the
-      relevant patient background.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/sessions/context
-    tags:
-      - Sessions
-      - Context
-      - Attachments
-      - Documents
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/sessions/context
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-  - aid: heidi-health:heidi-api-session-coding
-    name: Heidi Session Coding API
-    description: >-
-      Generate clinical codes for a session across ICD-10, ICD-10-CM, ICD-9, ICD-9-CM, SNOMED, SNOMED-CT, OPCS-410,
-      ACHI-13, and CPT-2025, returning a primary code, similar candidate codes, and citation references back to the
-      transcript and consult-note text.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/sessions/coding
-    tags:
-      - Clinical Coding
-      - ICD-10
-      - SNOMED
-      - CPT
-      - Billing
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-      - type: JSONSchema
-        url: json-schema/heidi-health-clinical-code-schema.json
-      - type: Examples
-        url: examples/heidi-health-get-clinical-codes-example.json
-  - aid: heidi-health:heidi-api-transcription
-    name: Heidi Transcription API
-    description: >-
-      Submit consultation audio either as a single uploaded file (lazy transcription on next GET) or in 45-second to
-      1-minute chunks for live ambient capture, and retrieve either the finalised transcript or a live chunked
-      transcript stream with per-chunk status and source provenance.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/transcription
-    tags:
-      - Transcription
-      - Audio
-      - Speech To Text
-      - Streaming
-      - Ambient AI
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/transcription
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-      - type: JSONSchema
-        url: json-schema/heidi-health-transcript-schema.json
-  - aid: heidi-health:heidi-api-consult-notes
-    name: Heidi Consult Notes API
-    description: >-
-      Generate streamed consult notes from a session's transcript and context, using either a Heidi or organisation
-      template or a custom client-supplied JSON template, with voice-style controls
-      (Goldilocks/Detailed/Brief/Super-Detailed/My Voice), brain selection (Left/Right), and Markdown or HTML output.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/consult-notes
-    tags:
-      - Consult Notes
-      - Generation
-      - Templates
-      - Streaming
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/consult-notes
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-      - type: JSONSchema
-        url: json-schema/heidi-health-consult-note-schema.json
-      - type: Examples
-        url: examples/heidi-health-generate-consult-note-example.json
-  - aid: heidi-health:heidi-api-documents
-    name: Heidi Documents API
-    description: >-
-      Create and retrieve auxiliary template-driven documents associated with a session (referral letters, patient
-      handouts, billing summaries, etc.) using the same voice-style, brain, and content-type controls as consult notes.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/documents
-    tags:
-      - Documents
-      - Generation
-      - Templates
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/documents
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-      - type: JSONSchema
-        url: json-schema/heidi-health-document-schema.json
-  - aid: heidi-health:heidi-api-ask-heidi
-    name: Heidi Ask Heidi API
-    description: >-
-      Stream AI-assistant responses scoped to a specific session, taking a free-form instruction, contextual content
-      (Markdown or HTML), and returning the generated reply as a sequence of JSON data chunks suitable for incremental
-      UI rendering.
-    humanURL: https://www.heidihealth.com/developers/heidi-api/ask-heidi
-    tags:
-      - Ask Heidi
-      - Assistant
-      - Streaming
-      - LLM
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
-      - type: OpenAPI
-        url: openapi/heidi-health-openapi.yml
-  - aid: heidi-health:heidi-widget-sdk
-    name: Heidi Widget SDK
-    description: >-
-      Embeddable JavaScript widget for dropping Heidi's ambient documentation experience directly into a web-based EHR
-      or clinical workflow with minimal engineering, with documented initialisation options, methods/callbacks,
-      patient-information parameters, and TypeScript types.
-    humanURL: https://www.heidihealth.com/developers/widget/overview
-    tags:
-      - Widget
-      - SDK
-      - Embed
-      - JavaScript
-      - EHR Integration
-    properties:
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/widget/overview
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/widget/install-the-widget
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/widget/sdk-specification/initialisation-options
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/widget/sdk-specification/methods-and-callbacks
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/widget/sdk-specification/patient-information
-      - type: Documentation
-        url: https://www.heidihealth.com/developers/widget/sdk-specification/types
+- aid: heidi-health:heidi-widget-sdk
+  name: Heidi Widget SDK
+  description: >-
+    Embeddable JavaScript widget for dropping Heidi's ambient documentation experience directly into a
+    web-based EHR or clinical workflow with minimal engineering, with documented initialisation options,
+    methods/callbacks, patient-information parameters, and TypeScript types.
+  humanURL: https://www.heidihealth.com/developers/widget/overview
+  tags:
+  - Widget
+  - SDK
+  - Embed
+  - JavaScript
+  - EHR Integration
+  properties:
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/widget/overview
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/widget/install-the-widget
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/widget/sdk-specification/initialisation-options
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/widget/sdk-specification/methods-and-callbacks
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/widget/sdk-specification/patient-information
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/widget/sdk-specification/types
+- aid: heidi-health:heidi-health-ask-heidi-api
+  name: Heidi Health Ask Heidi API
+  description: Streamed AI-assistant responses scoped to a session.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Ask Heidi
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-ask-heidi-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-authentication-api
+  name: Heidi Health Authentication API
+  description: Token exchange.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-clinical-coding-api
+  name: Heidi Health Clinical Coding API
+  description: ICD/SNOMED/CPT and related code generation.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Clinical Coding
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-clinical-coding-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-consult-notes-api
+  name: Heidi Health Consult Notes API
+  description: Streamed consult-note generation.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Consult Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-consult-notes-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-documents-api
+  name: Heidi Health Documents API
+  description: Auxiliary template-driven documents.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-documents-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-patient-profiles-api
+  name: Heidi Health Patient Profiles API
+  description: Longitudinal patient records.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Patient Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-patient-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-session-context-api
+  name: Heidi Health Session Context API
+  description: Notes, linked sessions, and context document attachments.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Session Context
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-session-context-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-sessions-api
+  name: Heidi Health Sessions API
+  description: Clinical session lifecycle.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-templates-api
+  name: Heidi Health Templates API
+  description: Consult-note templates.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-templates-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
+- aid: heidi-health:heidi-health-transcription-api
+  name: Heidi Health Transcription API
+  description: Audio upload and transcript retrieval.
+  humanURL: https://www.heidihealth.com/developers/heidi-api/authentication
+  tags:
+  - Transcription
+  properties:
+  - type: OpenAPI
+    url: openapi/heidi-health-transcription-api-openapi.yml
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/authentication
+  - type: Examples
+    url: examples/heidi-health-get-jwt-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/templates
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/patient-profiles
+  - type: JSONSchema
+    url: json-schema/heidi-health-patient-profile-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/overview
+  - type: JSONSchema
+    url: json-schema/heidi-health-session-schema.json
+  - type: JSONStructure
+    url: json-structure/heidi-health-session-structure.json
+  - type: Examples
+    url: examples/heidi-health-create-session-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/context
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/sessions/coding
+  - type: JSONSchema
+    url: json-schema/heidi-health-clinical-code-schema.json
+  - type: Examples
+    url: examples/heidi-health-get-clinical-codes-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/transcription
+  - type: JSONSchema
+    url: json-schema/heidi-health-transcript-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/consult-notes
+  - type: JSONSchema
+    url: json-schema/heidi-health-consult-note-schema.json
+  - type: Examples
+    url: examples/heidi-health-generate-consult-note-example.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/documents
+  - type: JSONSchema
+    url: json-schema/heidi-health-document-schema.json
+  - type: Documentation
+    url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/heidi-health/overview
   - type: AgenticAccess
     url: agentic-access/heidi-health-agentic-access.yml
   - type: VulnerabilityDisclosure
