@@ -1,0 +1,122 @@
+{
+  "info": {
+    "_postman_id": "dec1a95f-19c1-4eab-853d-c87cd2f22a54",
+    "name": "Heidi Health Ask Heidi Templates API",
+    "description": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:26.000Z",
+    "updatedAt": "2026-07-28T01:54:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dec1a95f-19c1-4eab-853d-c87cd2f22a54"
+  },
+  "item": [
+    {
+      "name": "templates",
+      "item": [
+        {
+          "name": "document-templates",
+          "item": [
+            {
+              "name": "List Consult Note Templates",
+              "id": "3fffdaa4-329a-4b4f-af04-c9856145bc58",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/templates/document-templates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "templates",
+                    "document-templates"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0287fe0e-ca1d-46ea-b044-ab19cc5f41cf",
+                  "name": "Templates returned.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/templates/document-templates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "templates",
+                        "document-templates"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"structure_template\": {},\n      \"template_category\": \"DOCUMENT_TEMPLATE\",\n      \"template_html\": \"<string>\",\n      \"author_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"structure_template\": {},\n      \"template_category\": \"DOCUMENT_TEMPLATE\",\n      \"template_html\": \"<string>\",\n      \"author_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:26.000Z",
+                  "updatedAt": "2026-07-28T01:54:26.000Z",
+                  "uid": "35240-0287fe0e-ca1d-46ea-b044-ab19cc5f41cf"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:26.000Z",
+              "updatedAt": "2026-07-28T01:54:26.000Z",
+              "uid": "35240-3fffdaa4-329a-4b4f-af04-c9856145bc58"
+            }
+          ],
+          "id": "a7819248-30cd-4334-b362-ae8c3d76e89e",
+          "createdAt": "2026-07-28T01:54:26.000Z",
+          "updatedAt": "2026-07-28T01:54:26.000Z",
+          "uid": "35240-a7819248-30cd-4334-b362-ae8c3d76e89e"
+        }
+      ],
+      "id": "9f42534b-3340-4ab1-96f3-ac4830f13cdf",
+      "createdAt": "2026-07-28T01:54:26.000Z",
+      "updatedAt": "2026-07-28T01:54:26.000Z",
+      "uid": "35240-9f42534b-3340-4ab1-96f3-ac4830f13cdf"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api"
+    }
+  ]
+}

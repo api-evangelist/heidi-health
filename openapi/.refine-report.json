@@ -1,0 +1,32 @@
+{
+  "provider": "heidi-health",
+  "sources": [
+    "heidi-health-ask-heidi-api-openapi.yml",
+    "heidi-health-authentication-api-openapi.yml",
+    "heidi-health-clinical-coding-api-openapi.yml",
+    "heidi-health-consult-notes-api-openapi.yml",
+    "heidi-health-documents-api-openapi.yml",
+    "heidi-health-patient-profiles-api-openapi.yml",
+    "heidi-health-session-context-api-openapi.yml",
+    "heidi-health-sessions-api-openapi.yml",
+    "heidi-health-templates-api-openapi.yml",
+    "heidi-health-transcription-api-openapi.yml"
+  ],
+  "outputs": [
+    "heidi-health-ask-heidi-api-openapi.yml",
+    "heidi-health-authentication-api-openapi.yml",
+    "heidi-health-clinical-coding-api-openapi.yml",
+    "heidi-health-consult-notes-api-openapi.yml",
+    "heidi-health-documents-api-openapi.yml",
+    "heidi-health-patient-profiles-api-openapi.yml",
+    "heidi-health-session-context-api-openapi.yml",
+    "heidi-health-sessions-api-openapi.yml",
+    "heidi-health-templates-api-openapi.yml",
+    "heidi-health-transcription-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

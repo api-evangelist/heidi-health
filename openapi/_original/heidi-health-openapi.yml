@@ -1,0 +1,736 @@
+openapi: 3.1.0
+info:
+  title: Heidi Health API
+  version: v2
+  summary: Public Heidi REST API for ambient AI medical scribe, transcription, consult notes, documents, clinical coding, and Ask Heidi.
+  description: |
+    The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician
+    tools) drive Heidi's ambient documentation engine end-to-end:
+    authentication via tenant API key + per-user JWT, patient profile
+    management, session lifecycle (create, update, list, retrieve),
+    contextual attachments and linked sessions, audio upload (single file or
+    chunked live), transcript retrieval (final or live-chunked), template
+    discovery, streamed consult-note and document generation against Heidi
+    or custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT
+    and others), and streamed Ask Heidi assistant responses.
+
+    Documentation: https://www.heidihealth.com/developers/heidi-api/overview
+  contact:
+    name: Heidi Health Support
+    url: https://support.heidihealth.com
+  license:
+    name: Heidi Health Terms of Service
+    url: https://www.heidihealth.com/legal/terms-of-service
+servers:
+  - url: https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api
+    description: Production
+tags:
+  - name: Authentication
+    description: Token exchange.
+  - name: Templates
+    description: Consult-note templates.
+  - name: Patient Profiles
+    description: Longitudinal patient records.
+  - name: Sessions
+    description: Clinical session lifecycle.
+  - name: Session Context
+    description: Notes, linked sessions, and context document attachments.
+  - name: Transcription
+    description: Audio upload and transcript retrieval.
+  - name: Consult Notes
+    description: Streamed consult-note generation.
+  - name: Documents
+    description: Auxiliary template-driven documents.
+  - name: Clinical Coding
+    description: ICD/SNOMED/CPT and related code generation.
+  - name: Ask Heidi
+    description: Streamed AI-assistant responses scoped to a session.
+security:
+  - bearerAuth: []
+paths:
+  /jwt:
+    get:
+      tags: [Authentication]
+      summary: Exchange API Key For JWT
+      description: Exchange a tenant Heidi API key for a short-lived bearer JWT bound to an EHR user.
+      operationId: getJwt
+      security:
+        - heidiApiKey: []
+      parameters:
+        - in: query
+          name: email
+          required: true
+          schema: { type: string, format: email }
+        - in: query
+          name: third_party_internal_id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Token issued.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Jwt' }
+  /templates/document-templates:
+    get:
+      tags: [Templates]
+      summary: List Consult Note Templates
+      operationId: listTemplates
+      responses:
+        '200':
+          description: Templates returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/Template' }
+  /patient-profiles:
+    post:
+      tags: [Patient Profiles]
+      summary: Create Patient Profile
+      operationId: createPatientProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PatientProfileCreate' }
+      responses:
+        '200':
+          description: Patient profile created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PatientProfile' }
+    get:
+      tags: [Patient Profiles]
+      summary: List Patient Profiles
+      operationId: listPatientProfiles
+      parameters:
+        - in: query
+          name: ehr_patient_id
+          schema: { type: string }
+        - in: query
+          name: provider
+          schema: { type: string }
+      responses:
+        '200':
+          description: Patient profiles returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/PatientProfile' }
+  /patient-profiles/{patient_profile_id}:
+    get:
+      tags: [Patient Profiles]
+      summary: Get Patient Profile
+      operationId: getPatientProfile
+      parameters:
+        - $ref: '#/components/parameters/PatientProfileId'
+      responses:
+        '200':
+          description: Patient profile.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PatientProfile' }
+    patch:
+      tags: [Patient Profiles]
+      summary: Update Patient Profile
+      operationId: updatePatientProfile
+      parameters:
+        - $ref: '#/components/parameters/PatientProfileId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PatientProfileUpdate' }
+      responses:
+        '200':
+          description: Patient profile updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PatientProfile' }
+  /patient-profiles:batch-delete:
+    post:
+      tags: [Patient Profiles]
+      summary: Batch Delete Patient Profiles
+      operationId: batchDeletePatientProfiles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patient_profile_ids:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200':
+          description: Profiles deleted.
+  /patient-profiles/{patient_profile_id}/sessions:
+    post:
+      tags: [Patient Profiles]
+      summary: Link Session To Patient Profile
+      operationId: linkSessionToPatientProfile
+      parameters:
+        - $ref: '#/components/parameters/PatientProfileId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id: { type: string }
+      responses:
+        '200':
+          description: Session linked.
+  /sessions:
+    post:
+      tags: [Sessions]
+      summary: Create Session
+      operationId: createSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SessionCreate' }
+      responses:
+        '200':
+          description: Session created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id: { type: string }
+  /sessions/{session_id}:
+    get:
+      tags: [Sessions]
+      summary: Get Session
+      operationId: getSession
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Session details.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+    patch:
+      tags: [Sessions]
+      summary: Update Session
+      operationId: updateSession
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SessionUpdate' }
+      responses:
+        '200':
+          description: Session updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+  /sessions/linked-user:
+    get:
+      tags: [Sessions]
+      summary: List Linked User Sessions
+      operationId: listLinkedUserSessions
+      parameters:
+        - in: query
+          name: page_size
+          schema: { type: integer, minimum: 1, maximum: 200 }
+      responses:
+        '200':
+          description: Paginated list of sessions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count: { type: integer }
+                  total_count: { type: integer }
+                  has_next: { type: boolean }
+                  has_previous: { type: boolean }
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/Session' }
+  /sessions/{session_id}/context-documents:
+    post:
+      tags: [Session Context]
+      summary: Upload Context Document
+      operationId: uploadContextDocument
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                unstructured: { type: boolean }
+      responses:
+        '200':
+          description: Document uploaded.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContextDocument' }
+    get:
+      tags: [Session Context]
+      summary: List Context Documents
+      operationId: listContextDocuments
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Context documents.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/ContextDocument' }
+    delete:
+      tags: [Session Context]
+      summary: Delete Context Documents
+      operationId: deleteContextDocuments
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+        - in: query
+          name: ids
+          required: true
+          schema:
+            type: array
+            items: { type: string }
+      responses:
+        '204': { description: Deleted. }
+  /sessions/{session_id}/upload-audio:
+    post:
+      tags: [Transcription]
+      summary: Upload Session Audio
+      description: Upload a full audio file (MP3 or OGG recommended) for lazy transcription.
+      operationId: uploadSessionAudio
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200': { description: Audio stored. }
+  /sessions/{session_id}/transcript:
+    get:
+      tags: [Transcription]
+      summary: Get Session Transcript
+      operationId: getSessionTranscript
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Final transcript.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Transcript' }
+  /sessions/{session_id}/transcript/live:
+    get:
+      tags: [Transcription]
+      summary: Get Live Session Transcript
+      description: Chunked live transcript with per-chunk status and source.
+      operationId: getLiveSessionTranscript
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Chunked live transcript.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LiveTranscript' }
+  /sessions/{session_id}/consult-note:
+    post:
+      tags: [Consult Notes]
+      summary: Generate Consult Note
+      description: Stream a consult note generated from the session's transcript and context.
+      operationId: generateConsultNote
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ConsultNoteGenerate' }
+      responses:
+        '200':
+          description: Streamed consult-note chunks.
+          content:
+            application/x-ndjson:
+              schema: { $ref: '#/components/schemas/StreamChunk' }
+  /sessions/{session_id}/client-customised-template/response:
+    post:
+      tags: [Consult Notes]
+      summary: Generate Custom Template Consult Note
+      description: Generate a consult note against a client-supplied JSON template.
+      operationId: generateCustomTemplateConsultNote
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template: { type: object }
+                content_type:
+                  type: string
+                  enum: [MARKDOWN, HTML]
+      responses:
+        '200':
+          description: Generated structured response.
+          content:
+            application/json:
+              schema: { type: object }
+  /sessions/{session_id}/documents:
+    post:
+      tags: [Documents]
+      summary: Generate Document
+      operationId: generateDocument
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DocumentGenerate' }
+      responses:
+        '200':
+          description: Document generated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Document' }
+    get:
+      tags: [Documents]
+      summary: List Session Documents
+      operationId: listSessionDocuments
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Documents linked to session.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/Document' }
+  /sessions/{session_id}/clinical-codes:
+    get:
+      tags: [Clinical Coding]
+      summary: Get Clinical Codes
+      description: Generate clinical codes for the session across the requested coding system.
+      operationId: getSessionClinicalCodes
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+        - in: query
+          name: coding_system
+          required: true
+          schema:
+            type: string
+            enum:
+              - ICD-10
+              - ICD-10-CM
+              - ICD-9
+              - ICD-9-CM
+              - SNOMED
+              - SNOMED-CT
+              - OPCS-410
+              - ACHI-13
+              - CPT-2025
+      responses:
+        '200':
+          description: Clinical codes for session.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ClinicalCodesResponse' }
+  /sessions/{session_id}/ask-ai:
+    post:
+      tags: [Ask Heidi]
+      summary: Ask Heidi
+      description: Stream an AI-assistant response scoped to the session.
+      operationId: askHeidi
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AskHeidiRequest' }
+      responses:
+        '200':
+          description: Streamed AI response chunks.
+          content:
+            application/x-ndjson:
+              schema: { $ref: '#/components/schemas/StreamChunk' }
+components:
+  securitySchemes:
+    heidiApiKey:
+      type: apiKey
+      in: header
+      name: Heidi-Api-Key
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema: { type: string }
+    PatientProfileId:
+      in: path
+      name: patient_profile_id
+      required: true
+      schema: { type: string }
+  schemas:
+    Jwt:
+      type: object
+      required: [token, expiration_time]
+      properties:
+        token: { type: string }
+        expiration_time: { type: string, format: date-time }
+    Template:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        structure_template: { type: object }
+        template_category:
+          type: string
+          enum: [CONSULT_NOTE_TEMPLATE, DOCUMENT_TEMPLATE]
+        template_html: { type: string }
+        author_name: { type: string }
+    PatientProfileCreate:
+      type: object
+      properties:
+        first_name: { type: string }
+        last_name: { type: string }
+        date_of_birth: { type: string, format: date }
+        gender: { type: string }
+        ehr_patient_id: { type: string }
+        provider: { type: string }
+    PatientProfileUpdate:
+      allOf:
+        - $ref: '#/components/schemas/PatientProfileCreate'
+    PatientProfile:
+      allOf:
+        - $ref: '#/components/schemas/PatientProfileCreate'
+        - type: object
+          properties:
+            id: { type: string }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+    SessionCreate:
+      type: object
+      properties:
+        patient_profile_id: { type: string }
+        ehr_appointment_id: { type: string }
+    SessionUpdate:
+      type: object
+      properties:
+        duration: { type: integer, description: Session duration in seconds. }
+        language_code: { type: string }
+        output_language_code: { type: string }
+        patient: { type: object }
+        clinician_notes:
+          type: array
+          items: { type: string }
+        ehr_appointment_id: { type: string }
+        ehr_patient_id: { type: string }
+        consent_obtained: { type: boolean }
+        linked_sessions_for_context:
+          type: array
+          items: { type: string }
+    Session:
+      type: object
+      properties:
+        session_id: { type: string }
+        patient: { type: object }
+        duration: { type: integer }
+        language_code: { type: string }
+        output_language_code: { type: string }
+        clinician_notes:
+          type: array
+          items: { type: string }
+        consent_obtained: { type: boolean }
+        linked_sessions_for_context:
+          type: array
+          items: { type: string }
+        consult_note: { type: object }
+        documents:
+          type: array
+          items: { $ref: '#/components/schemas/Document' }
+        audio: { type: object }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    ContextDocument:
+      type: object
+      properties:
+        id: { type: string }
+        filename: { type: string }
+        uploaded_at: { type: string, format: date-time }
+        status:
+          type: string
+          enum: [PARSING, READY]
+        unstructured: { type: boolean }
+    Transcript:
+      type: object
+      properties:
+        session_id: { type: string }
+        transcript: { type: string }
+        language_code: { type: string }
+    LiveTranscript:
+      type: object
+      properties:
+        session_id: { type: string }
+        transcript: { type: string }
+        active_source:
+          type: string
+          enum: [USER_UPLOADED, LIVE, BACKUP]
+        chunks:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              status:
+                type: string
+                enum: [PENDING, READY, FAILED]
+              duration: { type: number }
+              text: { type: string }
+              source:
+                type: string
+                enum: [USER_UPLOADED, LIVE, BACKUP]
+    ConsultNoteGenerate:
+      type: object
+      required: [generation_method, addition, voice_style, brain]
+      properties:
+        generation_method:
+          type: string
+          enum: [TEMPLATE]
+        template_id: { type: string }
+        addition: { type: string }
+        voice_style:
+          type: string
+          enum: [GOLDILOCKS, DETAILED, BRIEF, SUPER_DETAILED, MY_VOICE]
+        brain:
+          type: string
+          enum: [LEFT, RIGHT]
+          default: LEFT
+        content_type:
+          type: string
+          enum: [MARKDOWN, HTML]
+    DocumentGenerate:
+      type: object
+      required: [generation_method, template_id, voice_style, brain]
+      properties:
+        generation_method:
+          type: string
+          enum: [TEMPLATE]
+        template_id: { type: string }
+        voice_style:
+          type: string
+          enum: [GOLDILOCKS, DETAILED, BRIEF, SUPER_DETAILED, MY_VOICE]
+        brain:
+          type: string
+          enum: [LEFT, RIGHT]
+        content_type:
+          type: string
+          enum: [MARKDOWN, HTML]
+    Document:
+      type: object
+      properties:
+        id: { type: string }
+        index: { type: integer }
+        name: { type: string }
+        template_id: { type: string }
+        generation_type: { type: string }
+        content: { type: string }
+        content_type:
+          type: string
+          enum: [MARKDOWN, HTML]
+    ClinicalCodesResponse:
+      type: object
+      properties:
+        coding_system: { type: string }
+        status:
+          type: string
+          enum: [PROCESSING, READY, FAILED]
+        entities:
+          type: array
+          items: { $ref: '#/components/schemas/ClinicalCodeEntity' }
+    ClinicalCodeEntity:
+      type: object
+      properties:
+        entity: { type: string }
+        primary_code: { $ref: '#/components/schemas/ClinicalCode' }
+        similar_codes:
+          type: array
+          items: { $ref: '#/components/schemas/ClinicalCode' }
+        references:
+          type: array
+          items:
+            type: object
+            properties:
+              source:
+                type: string
+                enum: [TRANSCRIPT, CONSULT_NOTE]
+              text: { type: string }
+              start: { type: integer }
+              end: { type: integer }
+    ClinicalCode:
+      type: object
+      properties:
+        code: { type: string }
+        description: { type: string }
+        coding_system: { type: string }
+        effective_date: { type: string, format: date }
+        valid: { type: boolean }
+        hierarchy:
+          type: array
+          items: { type: string }
+    AskHeidiRequest:
+      type: object
+      required: [ai_command_text, content, content_type]
+      properties:
+        ai_command_text: { type: string }
+        content: { type: string }
+        content_type:
+          type: string
+          enum: [MARKDOWN, HTML]
+    StreamChunk:
+      type: object
+      properties:
+        data: { type: string }

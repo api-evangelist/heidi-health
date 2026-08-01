@@ -1,0 +1,445 @@
+{
+  "info": {
+    "_postman_id": "4bacfd5d-1a02-4001-b174-3c5f8d394308",
+    "name": "Heidi Health Ask Heidi Sessions API",
+    "description": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:25.000Z",
+    "updatedAt": "2026-07-28T01:54:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4bacfd5d-1a02-4001-b174-3c5f8d394308"
+  },
+  "item": [
+    {
+      "name": "sessions",
+      "item": [
+        {
+          "name": "{session_id}",
+          "item": [
+            {
+              "name": "Get Session",
+              "id": "7f961d4e-6ee7-4cd5-9b16-7125c36fee48",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sessions/:session_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    ":session_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4410840a-422c-4c14-8b30-550c3e200457",
+                      "key": "session_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3e2008f2-01fa-417c-b939-b8b1e4a05efb",
+                  "name": "Session details.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "session_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"session_id\": \"<string>\",\n  \"patient\": {},\n  \"duration\": \"<integer>\",\n  \"language_code\": \"<string>\",\n  \"output_language_code\": \"<string>\",\n  \"clinician_notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consent_obtained\": \"<boolean>\",\n  \"linked_sessions_for_context\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consult_note\": {},\n  \"documents\": [\n    {\n      \"id\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"template_id\": \"<string>\",\n      \"generation_type\": \"<string>\",\n      \"content\": \"<string>\",\n      \"content_type\": \"MARKDOWN\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"template_id\": \"<string>\",\n      \"generation_type\": \"<string>\",\n      \"content\": \"<string>\",\n      \"content_type\": \"HTML\"\n    }\n  ],\n  \"audio\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:54:25.000Z",
+                  "updatedAt": "2026-07-28T01:54:25.000Z",
+                  "uid": "35240-3e2008f2-01fa-417c-b939-b8b1e4a05efb"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:25.000Z",
+              "updatedAt": "2026-07-28T01:54:25.000Z",
+              "uid": "35240-7f961d4e-6ee7-4cd5-9b16-7125c36fee48"
+            },
+            {
+              "name": "Update Session",
+              "id": "17612904-fb53-4665-b7ed-1c78c2585867",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"duration\": \"<integer>\",\n  \"language_code\": \"<string>\",\n  \"output_language_code\": \"<string>\",\n  \"patient\": {},\n  \"clinician_notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ehr_appointment_id\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"consent_obtained\": \"<boolean>\",\n  \"linked_sessions_for_context\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sessions/:session_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    ":session_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7c6c57a9-7089-4685-807e-d6a0e5e5fea8",
+                      "key": "session_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4b63c85e-fea8-4166-a211-69f0d29941ef",
+                  "name": "Session updated.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"duration\": \"<integer>\",\n  \"language_code\": \"<string>\",\n  \"output_language_code\": \"<string>\",\n  \"patient\": {},\n  \"clinician_notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ehr_appointment_id\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"consent_obtained\": \"<boolean>\",\n  \"linked_sessions_for_context\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "session_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"session_id\": \"<string>\",\n  \"patient\": {},\n  \"duration\": \"<integer>\",\n  \"language_code\": \"<string>\",\n  \"output_language_code\": \"<string>\",\n  \"clinician_notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consent_obtained\": \"<boolean>\",\n  \"linked_sessions_for_context\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consult_note\": {},\n  \"documents\": [\n    {\n      \"id\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"template_id\": \"<string>\",\n      \"generation_type\": \"<string>\",\n      \"content\": \"<string>\",\n      \"content_type\": \"MARKDOWN\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"template_id\": \"<string>\",\n      \"generation_type\": \"<string>\",\n      \"content\": \"<string>\",\n      \"content_type\": \"HTML\"\n    }\n  ],\n  \"audio\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:54:25.000Z",
+                  "updatedAt": "2026-07-28T01:54:25.000Z",
+                  "uid": "35240-4b63c85e-fea8-4166-a211-69f0d29941ef"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:25.000Z",
+              "updatedAt": "2026-07-28T01:54:25.000Z",
+              "uid": "35240-17612904-fb53-4665-b7ed-1c78c2585867"
+            }
+          ],
+          "id": "9f90dbb1-c172-4cde-b838-62ae5228f7ae",
+          "createdAt": "2026-07-28T01:54:25.000Z",
+          "updatedAt": "2026-07-28T01:54:25.000Z",
+          "uid": "35240-9f90dbb1-c172-4cde-b838-62ae5228f7ae"
+        },
+        {
+          "name": "linked-user",
+          "item": [
+            {
+              "name": "List Linked User Sessions",
+              "id": "a97703e0-c433-4578-8165-7dea9a50ab42",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sessions/linked-user?page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    "linked-user"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c068e951-452d-4781-b9ce-74b645f76959",
+                  "name": "Paginated list of sessions.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/linked-user?page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        "linked-user"
+                      ],
+                      "query": [
+                        {
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next\": \"<boolean>\",\n  \"has_previous\": \"<boolean>\",\n  \"data\": [\n    {\n      \"session_id\": \"<string>\",\n      \"patient\": {},\n      \"duration\": \"<integer>\",\n      \"language_code\": \"<string>\",\n      \"output_language_code\": \"<string>\",\n      \"clinician_notes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"consent_obtained\": \"<boolean>\",\n      \"linked_sessions_for_context\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"consult_note\": {},\n      \"documents\": [\n        {\n          \"id\": \"<string>\",\n          \"index\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"template_id\": \"<string>\",\n          \"generation_type\": \"<string>\",\n          \"content\": \"<string>\",\n          \"content_type\": \"MARKDOWN\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"index\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"template_id\": \"<string>\",\n          \"generation_type\": \"<string>\",\n          \"content\": \"<string>\",\n          \"content_type\": \"MARKDOWN\"\n        }\n      ],\n      \"audio\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"session_id\": \"<string>\",\n      \"patient\": {},\n      \"duration\": \"<integer>\",\n      \"language_code\": \"<string>\",\n      \"output_language_code\": \"<string>\",\n      \"clinician_notes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"consent_obtained\": \"<boolean>\",\n      \"linked_sessions_for_context\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"consult_note\": {},\n      \"documents\": [\n        {\n          \"id\": \"<string>\",\n          \"index\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"template_id\": \"<string>\",\n          \"generation_type\": \"<string>\",\n          \"content\": \"<string>\",\n          \"content_type\": \"HTML\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"index\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"template_id\": \"<string>\",\n          \"generation_type\": \"<string>\",\n          \"content\": \"<string>\",\n          \"content_type\": \"HTML\"\n        }\n      ],\n      \"audio\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:54:25.000Z",
+                  "updatedAt": "2026-07-28T01:54:25.000Z",
+                  "uid": "35240-c068e951-452d-4781-b9ce-74b645f76959"
+                }
+              ],
+              "createdAt": "2026-07-28T01:54:25.000Z",
+              "updatedAt": "2026-07-28T01:54:25.000Z",
+              "uid": "35240-a97703e0-c433-4578-8165-7dea9a50ab42"
+            }
+          ],
+          "id": "a710d1e7-5fe4-4513-9803-beba48453ef8",
+          "createdAt": "2026-07-28T01:54:25.000Z",
+          "updatedAt": "2026-07-28T01:54:25.000Z",
+          "uid": "35240-a710d1e7-5fe4-4513-9803-beba48453ef8"
+        },
+        {
+          "name": "Create Session",
+          "id": "6b84cc20-82b7-4f12-8870-61cef7ed610a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_profile_id\": \"<string>\",\n  \"ehr_appointment_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e65b5888-bccb-464a-b3ba-efbea939e961",
+              "name": "Session created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_profile_id\": \"<string>\",\n  \"ehr_appointment_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sessions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"session_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:54:25.000Z",
+              "updatedAt": "2026-07-28T01:54:25.000Z",
+              "uid": "35240-e65b5888-bccb-464a-b3ba-efbea939e961"
+            }
+          ],
+          "createdAt": "2026-07-28T01:54:25.000Z",
+          "updatedAt": "2026-07-28T01:54:25.000Z",
+          "uid": "35240-6b84cc20-82b7-4f12-8870-61cef7ed610a"
+        }
+      ],
+      "id": "90dde3f3-80b3-4c23-9ddf-01e218e6e56e",
+      "createdAt": "2026-07-28T01:54:25.000Z",
+      "updatedAt": "2026-07-28T01:54:25.000Z",
+      "uid": "35240-90dde3f3-80b3-4c23-9ddf-01e218e6e56e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api"
+    }
+  ]
+}

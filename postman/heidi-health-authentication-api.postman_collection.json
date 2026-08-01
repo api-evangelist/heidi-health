@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "be7e8a6f-c284-4fb7-b548-6c57cf6fa632",
+    "name": "Heidi Health Ask Heidi Authentication API",
+    "description": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:15.000Z",
+    "updatedAt": "2026-07-28T01:54:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-be7e8a6f-c284-4fb7-b548-6c57cf6fa632"
+  },
+  "item": [
+    {
+      "name": "jwt",
+      "item": [
+        {
+          "name": "Exchange API Key For JWT",
+          "id": "7c921ed7-abfd-4db1-b703-63ec11ac8407",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Heidi-Api-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/jwt?email=<email>&third_party_internal_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "email",
+                  "value": "<email>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "third_party_internal_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Exchange a tenant Heidi API key for a short-lived bearer JWT bound to an EHR user."
+          },
+          "response": [
+            {
+              "id": "668887fb-6c09-42d1-baa6-7f2fe6e2562b",
+              "name": "Token issued.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Heidi-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jwt?email=<email>&third_party_internal_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jwt"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "third_party_internal_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"token\": \"<string>\",\n  \"expiration_time\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:54:16.000Z",
+              "updatedAt": "2026-07-28T01:54:16.000Z",
+              "uid": "35240-668887fb-6c09-42d1-baa6-7f2fe6e2562b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:54:16.000Z",
+          "updatedAt": "2026-07-28T01:54:16.000Z",
+          "uid": "35240-7c921ed7-abfd-4db1-b703-63ec11ac8407"
+        }
+      ],
+      "id": "77951dfc-7371-46f0-beaf-cbcd829f4ba2",
+      "createdAt": "2026-07-28T01:54:16.000Z",
+      "updatedAt": "2026-07-28T01:54:16.000Z",
+      "uid": "35240-77951dfc-7371-46f0-beaf-cbcd829f4ba2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "50943e54-444c-4aea-9433-6b47f31d0c02",
+    "name": "Heidi Health Ask Heidi API",
+    "description": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:03.000Z",
+    "updatedAt": "2026-07-28T01:54:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-50943e54-444c-4aea-9433-6b47f31d0c02"
+  },
+  "item": [
+    {
+      "name": "sessions",
+      "item": [
+        {
+          "name": "{session_id}",
+          "item": [
+            {
+              "name": "ask-ai",
+              "item": [
+                {
+                  "name": "Ask Heidi",
+                  "id": "d27ef3cf-504f-40eb-9954-018d1aef9bf0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/x-ndjson"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ai_command_text\": \"<string>\",\n  \"content\": \"<string>\",\n  \"content_type\": \"HTML\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/ask-ai",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "ask-ai"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a73433eb-5abe-4c9f-a391-01bf8d1782d4",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Stream an AI-assistant response scoped to the session."
+                  },
+                  "response": [
+                    {
+                      "id": "607716df-f26d-49a2-9c8e-6da0ef948184",
+                      "name": "Streamed AI response chunks.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/x-ndjson"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ai_command_text\": \"<string>\",\n  \"content\": \"<string>\",\n  \"content_type\": \"HTML\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/ask-ai",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "ask-ai"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/x-ndjson"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:54:03.000Z",
+                      "updatedAt": "2026-07-28T01:54:03.000Z",
+                      "uid": "35240-607716df-f26d-49a2-9c8e-6da0ef948184"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:03.000Z",
+                  "updatedAt": "2026-07-28T01:54:03.000Z",
+                  "uid": "35240-d27ef3cf-504f-40eb-9954-018d1aef9bf0"
+                }
+              ],
+              "id": "2ded34dd-dfd8-4a55-8721-ac983a0f1bc7",
+              "createdAt": "2026-07-28T01:54:03.000Z",
+              "updatedAt": "2026-07-28T01:54:03.000Z",
+              "uid": "35240-2ded34dd-dfd8-4a55-8721-ac983a0f1bc7"
+            }
+          ],
+          "id": "0ea31dea-bd3d-4776-8410-d3445278d8d4",
+          "createdAt": "2026-07-28T01:54:03.000Z",
+          "updatedAt": "2026-07-28T01:54:03.000Z",
+          "uid": "35240-0ea31dea-bd3d-4776-8410-d3445278d8d4"
+        }
+      ],
+      "id": "c87f134b-ad0f-4e87-9614-53833ba07791",
+      "createdAt": "2026-07-28T01:54:03.000Z",
+      "updatedAt": "2026-07-28T01:54:03.000Z",
+      "uid": "35240-c87f134b-ad0f-4e87-9614-53833ba07791"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api"
+    }
+  ]
+}

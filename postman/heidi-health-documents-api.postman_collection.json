@@ -1,0 +1,263 @@
+{
+  "info": {
+    "_postman_id": "ac7b0684-0d5c-42d5-b0fc-40a26e3df318",
+    "name": "Heidi Health Ask Heidi Documents API",
+    "description": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:21.000Z",
+    "updatedAt": "2026-07-28T01:54:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ac7b0684-0d5c-42d5-b0fc-40a26e3df318"
+  },
+  "item": [
+    {
+      "name": "sessions",
+      "item": [
+        {
+          "name": "{session_id}",
+          "item": [
+            {
+              "name": "documents",
+              "item": [
+                {
+                  "name": "Generate Document",
+                  "id": "a5ec2244-a762-4bd0-a67c-e22081cda310",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"generation_method\": \"TEMPLATE\",\n  \"template_id\": \"<string>\",\n  \"voice_style\": \"SUPER_DETAILED\",\n  \"brain\": \"RIGHT\",\n  \"content_type\": \"MARKDOWN\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4ab5e6a2-5190-4dce-8061-be14e1182a63",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7d2a9a37-58b0-4545-81ef-b46af83de070",
+                      "name": "Document generated.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"generation_method\": \"TEMPLATE\",\n  \"template_id\": \"<string>\",\n  \"voice_style\": \"SUPER_DETAILED\",\n  \"brain\": \"RIGHT\",\n  \"content_type\": \"MARKDOWN\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"index\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"generation_type\": \"<string>\",\n  \"content\": \"<string>\",\n  \"content_type\": \"MARKDOWN\"\n}",
+                      "createdAt": "2026-07-28T01:54:22.000Z",
+                      "updatedAt": "2026-07-28T01:54:22.000Z",
+                      "uid": "35240-7d2a9a37-58b0-4545-81ef-b46af83de070"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:22.000Z",
+                  "updatedAt": "2026-07-28T01:54:22.000Z",
+                  "uid": "35240-a5ec2244-a762-4bd0-a67c-e22081cda310"
+                },
+                {
+                  "name": "List Session Documents",
+                  "id": "e6d787a4-08e3-49eb-bb13-902ecd3918e6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3527525f-6145-4919-b044-dd86d3a3b666",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a57ba778-6f83-492c-a346-4c78ddc182c1",
+                      "name": "Documents linked to session.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"template_id\": \"<string>\",\n      \"generation_type\": \"<string>\",\n      \"content\": \"<string>\",\n      \"content_type\": \"MARKDOWN\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"template_id\": \"<string>\",\n      \"generation_type\": \"<string>\",\n      \"content\": \"<string>\",\n      \"content_type\": \"HTML\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:54:22.000Z",
+                      "updatedAt": "2026-07-28T01:54:22.000Z",
+                      "uid": "35240-a57ba778-6f83-492c-a346-4c78ddc182c1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:22.000Z",
+                  "updatedAt": "2026-07-28T01:54:22.000Z",
+                  "uid": "35240-e6d787a4-08e3-49eb-bb13-902ecd3918e6"
+                }
+              ],
+              "id": "461a92d1-05a2-48d0-bc9e-7b819e5d94ab",
+              "createdAt": "2026-07-28T01:54:22.000Z",
+              "updatedAt": "2026-07-28T01:54:22.000Z",
+              "uid": "35240-461a92d1-05a2-48d0-bc9e-7b819e5d94ab"
+            }
+          ],
+          "id": "059dbdc4-2307-4914-93b7-a308b6480d2d",
+          "createdAt": "2026-07-28T01:54:22.000Z",
+          "updatedAt": "2026-07-28T01:54:22.000Z",
+          "uid": "35240-059dbdc4-2307-4914-93b7-a308b6480d2d"
+        }
+      ],
+      "id": "e2322680-7de2-4e5b-9fd3-9fab57214f1a",
+      "createdAt": "2026-07-28T01:54:22.000Z",
+      "updatedAt": "2026-07-28T01:54:22.000Z",
+      "uid": "35240-e2322680-7de2-4e5b-9fd3-9fab57214f1a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api"
+    }
+  ]
+}

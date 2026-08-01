@@ -1,0 +1,366 @@
+{
+  "info": {
+    "_postman_id": "0ed12377-2a3a-427e-be98-8a95f93cc6ec",
+    "name": "Heidi Health Ask Heidi Session Context API",
+    "description": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:24.000Z",
+    "updatedAt": "2026-07-28T01:54:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0ed12377-2a3a-427e-be98-8a95f93cc6ec"
+  },
+  "item": [
+    {
+      "name": "sessions",
+      "item": [
+        {
+          "name": "{session_id}",
+          "item": [
+            {
+              "name": "context-documents",
+              "item": [
+                {
+                  "name": "Upload Context Document",
+                  "id": "ca73c60b-a885-4463-9026-7b903934b780",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        },
+                        {
+                          "key": "unstructured",
+                          "value": "<boolean>",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/context-documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "context-documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c59f6245-8027-41f0-99ff-0a76add8dcb1",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "fce385a0-a2e4-473b-b70d-751bde70c64f",
+                      "name": "Document uploaded.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "file",
+                              "type": "file"
+                            },
+                            {
+                              "key": "unstructured",
+                              "value": "<boolean>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/context-documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "context-documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"filename\": \"<string>\",\n  \"uploaded_at\": \"<dateTime>\",\n  \"status\": \"PARSING\",\n  \"unstructured\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T01:54:24.000Z",
+                      "updatedAt": "2026-07-28T01:54:24.000Z",
+                      "uid": "35240-fce385a0-a2e4-473b-b70d-751bde70c64f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:24.000Z",
+                  "updatedAt": "2026-07-28T01:54:24.000Z",
+                  "uid": "35240-ca73c60b-a885-4463-9026-7b903934b780"
+                },
+                {
+                  "name": "List Context Documents",
+                  "id": "e2aa2112-4363-4675-b3fa-e540acb61d4e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/context-documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "context-documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a71b9568-6b89-4727-a0d6-173070256e01",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8dcef924-2ef6-4ae6-8f81-e9d9c53f9b95",
+                      "name": "Context documents.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/context-documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "context-documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"uploaded_at\": \"<dateTime>\",\n      \"status\": \"PARSING\",\n      \"unstructured\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"uploaded_at\": \"<dateTime>\",\n      \"status\": \"READY\",\n      \"unstructured\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:54:24.000Z",
+                      "updatedAt": "2026-07-28T01:54:24.000Z",
+                      "uid": "35240-8dcef924-2ef6-4ae6-8f81-e9d9c53f9b95"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:24.000Z",
+                  "updatedAt": "2026-07-28T01:54:24.000Z",
+                  "uid": "35240-e2aa2112-4363-4675-b3fa-e540acb61d4e"
+                },
+                {
+                  "name": "Delete Context Documents",
+                  "id": "1b01ee3e-8558-4399-8a8b-f68d3d813aeb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/context-documents?ids=<string>&ids=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "context-documents"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "ids",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "720cb1bd-da06-4714-8f24-03ab7a1b6fa6",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c2dcf3ff-9750-4e63-b597-0a94f6dc9a1a",
+                      "name": "Deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/context-documents?ids=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "context-documents"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "ids",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:54:24.000Z",
+                      "updatedAt": "2026-07-28T01:54:24.000Z",
+                      "uid": "35240-c2dcf3ff-9750-4e63-b597-0a94f6dc9a1a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:24.000Z",
+                  "updatedAt": "2026-07-28T01:54:24.000Z",
+                  "uid": "35240-1b01ee3e-8558-4399-8a8b-f68d3d813aeb"
+                }
+              ],
+              "id": "7e083364-f1f1-4ad6-a4d9-b2fc08141b15",
+              "createdAt": "2026-07-28T01:54:24.000Z",
+              "updatedAt": "2026-07-28T01:54:24.000Z",
+              "uid": "35240-7e083364-f1f1-4ad6-a4d9-b2fc08141b15"
+            }
+          ],
+          "id": "fd40609e-17c2-4370-9bd3-06c275afac0c",
+          "createdAt": "2026-07-28T01:54:24.000Z",
+          "updatedAt": "2026-07-28T01:54:24.000Z",
+          "uid": "35240-fd40609e-17c2-4370-9bd3-06c275afac0c"
+        }
+      ],
+      "id": "89183a5f-9908-4c33-abc2-434f4a55542e",
+      "createdAt": "2026-07-28T01:54:24.000Z",
+      "updatedAt": "2026-07-28T01:54:24.000Z",
+      "uid": "35240-89183a5f-9908-4c33-abc2-434f4a55542e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api"
+    }
+  ]
+}

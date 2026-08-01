@@ -1,0 +1,161 @@
+{
+  "info": {
+    "_postman_id": "96341308-7226-4346-9909-449c2b632393",
+    "name": "Heidi Health Ask Heidi Clinical Coding API",
+    "description": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:16.000Z",
+    "updatedAt": "2026-07-28T01:54:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-96341308-7226-4346-9909-449c2b632393"
+  },
+  "item": [
+    {
+      "name": "sessions",
+      "item": [
+        {
+          "name": "{session_id}",
+          "item": [
+            {
+              "name": "clinical-codes",
+              "item": [
+                {
+                  "name": "Get Clinical Codes",
+                  "id": "bb819152-dff0-4c5a-b18c-e69a50a9baa1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/clinical-codes?coding_system=ACHI-13",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "clinical-codes"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "coding_system",
+                          "value": "ACHI-13"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8b30543e-017a-47df-ba08-5be6ba93f536",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Generate clinical codes for the session across the requested coding system."
+                  },
+                  "response": [
+                    {
+                      "id": "8e8b155f-049c-470c-82fd-025003c38ab4",
+                      "name": "Clinical codes for session.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/clinical-codes?coding_system=ACHI-13",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "clinical-codes"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "coding_system",
+                              "value": "ACHI-13"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"coding_system\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"entities\": [\n    {\n      \"entity\": \"<string>\",\n      \"primary_code\": {\n        \"code\": \"<string>\",\n        \"description\": \"<string>\",\n        \"coding_system\": \"<string>\",\n        \"effective_date\": \"<date>\",\n        \"valid\": \"<boolean>\",\n        \"hierarchy\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similar_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"description\": \"<string>\",\n          \"coding_system\": \"<string>\",\n          \"effective_date\": \"<date>\",\n          \"valid\": \"<boolean>\",\n          \"hierarchy\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"description\": \"<string>\",\n          \"coding_system\": \"<string>\",\n          \"effective_date\": \"<date>\",\n          \"valid\": \"<boolean>\",\n          \"hierarchy\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"references\": [\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"<string>\",\n          \"start\": \"<integer>\",\n          \"end\": \"<integer>\"\n        },\n        {\n          \"source\": \"TRANSCRIPT\",\n          \"text\": \"<string>\",\n          \"start\": \"<integer>\",\n          \"end\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"entity\": \"<string>\",\n      \"primary_code\": {\n        \"code\": \"<string>\",\n        \"description\": \"<string>\",\n        \"coding_system\": \"<string>\",\n        \"effective_date\": \"<date>\",\n        \"valid\": \"<boolean>\",\n        \"hierarchy\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similar_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"description\": \"<string>\",\n          \"coding_system\": \"<string>\",\n          \"effective_date\": \"<date>\",\n          \"valid\": \"<boolean>\",\n          \"hierarchy\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"description\": \"<string>\",\n          \"coding_system\": \"<string>\",\n          \"effective_date\": \"<date>\",\n          \"valid\": \"<boolean>\",\n          \"hierarchy\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"references\": [\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"<string>\",\n          \"start\": \"<integer>\",\n          \"end\": \"<integer>\"\n        },\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"<string>\",\n          \"start\": \"<integer>\",\n          \"end\": \"<integer>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:54:17.000Z",
+                      "updatedAt": "2026-07-28T01:54:17.000Z",
+                      "uid": "35240-8e8b155f-049c-470c-82fd-025003c38ab4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:17.000Z",
+                  "updatedAt": "2026-07-28T01:54:17.000Z",
+                  "uid": "35240-bb819152-dff0-4c5a-b18c-e69a50a9baa1"
+                }
+              ],
+              "id": "9654f44e-2f3a-42d1-a4d7-913f52726ea2",
+              "createdAt": "2026-07-28T01:54:17.000Z",
+              "updatedAt": "2026-07-28T01:54:17.000Z",
+              "uid": "35240-9654f44e-2f3a-42d1-a4d7-913f52726ea2"
+            }
+          ],
+          "id": "d7e43069-abf2-4358-a4f2-77f07fdf2dea",
+          "createdAt": "2026-07-28T01:54:17.000Z",
+          "updatedAt": "2026-07-28T01:54:17.000Z",
+          "uid": "35240-d7e43069-abf2-4358-a4f2-77f07fdf2dea"
+        }
+      ],
+      "id": "860bbb8f-0a94-4d49-846e-c81e7b70d0cc",
+      "createdAt": "2026-07-28T01:54:17.000Z",
+      "updatedAt": "2026-07-28T01:54:17.000Z",
+      "uid": "35240-860bbb8f-0a94-4d49-846e-c81e7b70d0cc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api"
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "info": {
+    "_postman_id": "da4bf26f-b8ec-469c-b13a-dfcc6f90b90a",
+    "name": "Heidi Health Ask Heidi Transcription API",
+    "description": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:54:27.000Z",
+    "updatedAt": "2026-07-28T01:54:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-da4bf26f-b8ec-469c-b13a-dfcc6f90b90a"
+  },
+  "item": [
+    {
+      "name": "sessions",
+      "item": [
+        {
+          "name": "{session_id}",
+          "item": [
+            {
+              "name": "upload-audio",
+              "item": [
+                {
+                  "name": "Upload Session Audio",
+                  "id": "fa600a0e-0617-4584-ad4a-c1ebb6969fc2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/upload-audio",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "upload-audio"
+                      ],
+                      "variable": [
+                        {
+                          "id": "08e2f62d-5ea0-4243-a97b-79deb7f71a93",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Upload a full audio file (MP3 or OGG recommended) for lazy transcription."
+                  },
+                  "response": [
+                    {
+                      "id": "bb55df26-af08-43c5-afd6-b9011f667b83",
+                      "name": "Audio stored.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/upload-audio",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "upload-audio"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:54:27.000Z",
+                      "updatedAt": "2026-07-28T01:54:27.000Z",
+                      "uid": "35240-bb55df26-af08-43c5-afd6-b9011f667b83"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:27.000Z",
+                  "updatedAt": "2026-07-28T01:54:27.000Z",
+                  "uid": "35240-fa600a0e-0617-4584-ad4a-c1ebb6969fc2"
+                }
+              ],
+              "id": "23c7d41b-6d3c-4ea0-8c68-a4b4422971cd",
+              "createdAt": "2026-07-28T01:54:27.000Z",
+              "updatedAt": "2026-07-28T01:54:27.000Z",
+              "uid": "35240-23c7d41b-6d3c-4ea0-8c68-a4b4422971cd"
+            },
+            {
+              "name": "transcript",
+              "item": [
+                {
+                  "name": "live",
+                  "item": [
+                    {
+                      "name": "Get Live Session Transcript",
+                      "id": "85280af0-69f9-4949-87e5-92158f7b5950",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/transcript/live",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "transcript",
+                            "live"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1dc63028-0398-4f4e-8ab7-8de24710017a",
+                              "key": "session_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Chunked live transcript with per-chunk status and source."
+                      },
+                      "response": [
+                        {
+                          "id": "18397c81-69d3-480c-818e-573ccf443b36",
+                          "name": "Chunked live transcript.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sessions/:session_id/transcript/live",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sessions",
+                                ":session_id",
+                                "transcript",
+                                "live"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "session_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"session_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"active_source\": \"USER_UPLOADED\",\n  \"chunks\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"FAILED\",\n      \"duration\": \"<number>\",\n      \"text\": \"<string>\",\n      \"source\": \"USER_UPLOADED\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"FAILED\",\n      \"duration\": \"<number>\",\n      \"text\": \"<string>\",\n      \"source\": \"USER_UPLOADED\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:54:27.000Z",
+                          "updatedAt": "2026-07-28T01:54:27.000Z",
+                          "uid": "35240-18397c81-69d3-480c-818e-573ccf443b36"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:54:27.000Z",
+                      "updatedAt": "2026-07-28T01:54:27.000Z",
+                      "uid": "35240-85280af0-69f9-4949-87e5-92158f7b5950"
+                    }
+                  ],
+                  "id": "428ee848-bcc6-4520-b7eb-0ecc238e8c72",
+                  "createdAt": "2026-07-28T01:54:27.000Z",
+                  "updatedAt": "2026-07-28T01:54:27.000Z",
+                  "uid": "35240-428ee848-bcc6-4520-b7eb-0ecc238e8c72"
+                },
+                {
+                  "name": "Get Session Transcript",
+                  "id": "aa112fd0-e7af-4d2b-9666-1b71e6c7792f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/transcript",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "transcript"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4c664a72-d350-4d8b-ad80-90a1828d96e4",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a2a0c3ca-b325-4462-8cd0-a5e6a1f0f308",
+                      "name": "Final transcript.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/transcript",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "transcript"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"session_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"language_code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:54:27.000Z",
+                      "updatedAt": "2026-07-28T01:54:27.000Z",
+                      "uid": "35240-a2a0c3ca-b325-4462-8cd0-a5e6a1f0f308"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:54:27.000Z",
+                  "updatedAt": "2026-07-28T01:54:27.000Z",
+                  "uid": "35240-aa112fd0-e7af-4d2b-9666-1b71e6c7792f"
+                }
+              ],
+              "id": "808ad209-d7d2-4e16-8709-632c6059268a",
+              "createdAt": "2026-07-28T01:54:27.000Z",
+              "updatedAt": "2026-07-28T01:54:27.000Z",
+              "uid": "35240-808ad209-d7d2-4e16-8709-632c6059268a"
+            }
+          ],
+          "id": "aebed27e-17ad-4e5a-9a5d-66a62a10c253",
+          "createdAt": "2026-07-28T01:54:27.000Z",
+          "updatedAt": "2026-07-28T01:54:27.000Z",
+          "uid": "35240-aebed27e-17ad-4e5a-9a5d-66a62a10c253"
+        }
+      ],
+      "id": "f95212a2-d192-4fb7-8dc2-dd17625d1ca8",
+      "createdAt": "2026-07-28T01:54:27.000Z",
+      "updatedAt": "2026-07-28T01:54:27.000Z",
+      "uid": "35240-f95212a2-d192-4fb7-8dc2-dd17625d1ca8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api"
+    }
+  ]
+}
