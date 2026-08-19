@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "7e30b456-ac37-4837-8027-1314e8d1f9a1",
+      "name": "Clinical Coding",
+      "description": {
+        "content": "ICD/SNOMED/CPT and related code generation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74fd67b6-8b07-4c25-b7d0-92fe648c886d",
+          "name": "Get Clinical Codes",
+          "request": {
+            "name": "Get Clinical Codes",
+            "description": {
+              "content": "Generate clinical codes for the session across the requested coding system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "clinical-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "coding_system",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d87efd70-1d2b-4518-afdf-f3854234ed8e",
+              "name": "Clinical codes for session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "clinical-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coding_system",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coding_system\": \"string\",\n  \"status\": \"READY\",\n  \"entities\": [\n    {\n      \"entity\": \"string\",\n      \"primary_code\": {\n        \"code\": \"string\",\n        \"description\": \"string\",\n        \"coding_system\": \"string\",\n        \"effective_date\": \"1971-08-08\",\n        \"valid\": false,\n        \"hierarchy\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"similar_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"coding_system\": \"string\",\n          \"effective_date\": \"1999-07-05\",\n          \"valid\": true,\n          \"hierarchy\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"coding_system\": \"string\",\n          \"effective_date\": \"1972-01-08\",\n          \"valid\": true,\n          \"hierarchy\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"references\": [\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"string\",\n          \"start\": 6984,\n          \"end\": 6293\n        },\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"string\",\n          \"start\": 8656,\n          \"end\": 2866\n        }\n      ]\n    },\n    {\n      \"entity\": \"string\",\n      \"primary_code\": {\n        \"code\": \"string\",\n        \"description\": \"string\",\n        \"coding_system\": \"string\",\n        \"effective_date\": \"1999-10-30\",\n        \"valid\": false,\n        \"hierarchy\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"similar_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"coding_system\": \"string\",\n          \"effective_date\": \"1963-12-11\",\n          \"valid\": true,\n          \"hierarchy\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"coding_system\": \"string\",\n          \"effective_date\": \"2008-11-02\",\n          \"valid\": false,\n          \"hierarchy\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"references\": [\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"string\",\n          \"start\": 2227,\n          \"end\": 6141\n        },\n        {\n          \"source\": \"CONSULT_NOTE\",\n          \"text\": \"string\",\n          \"start\": 1314,\n          \"end\": 2451\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2252726b-6e43-49ba-80a3-bf1d657e4b7c",
+    "name": "Heidi Health Ask Heidi Clinical Coding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+      "type": "text/plain"
+    }
+  }
+}

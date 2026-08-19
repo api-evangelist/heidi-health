@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Heidi Health Ask Heidi API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ask Heidi",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ask Heidi",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/ask-ai",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stream an AI-assistant response scoped to the session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

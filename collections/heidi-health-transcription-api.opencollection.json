@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Heidi Health Ask Heidi Transcription API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transcription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload Session Audio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/upload-audio",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a full audio file (MP3 or OGG recommended) for lazy transcription."
+        },
+        {
+          "info": {
+            "name": "Get Session Transcript",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/transcript",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Session Transcript"
+        },
+        {
+          "info": {
+            "name": "Get Live Session Transcript",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/transcript/live",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chunked live transcript with per-chunk status and source."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

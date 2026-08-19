@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Heidi Health Ask Heidi Sessions API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Session"
+        },
+        {
+          "info": {
+            "name": "Get Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Session"
+        },
+        {
+          "info": {
+            "name": "Update Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Session"
+        },
+        {
+          "info": {
+            "name": "List Linked User Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/linked-user",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Linked User Sessions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

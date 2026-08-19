@@ -1,0 +1,635 @@
+{
+  "item": [
+    {
+      "id": "40ba105a-614f-46f7-b958-00828603aa5d",
+      "name": "Patient Profiles",
+      "description": {
+        "content": "Longitudinal patient records.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ec0bdc6-ccb4-4ab3-a87c-ffdb80ce733c",
+          "name": "Create Patient Profile",
+          "request": {
+            "name": "Create Patient Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43408e3a-738c-4cdc-ae6d-94acad65a5c9",
+              "name": "Patient profile created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"2026-03-13\",\n  \"gender\": \"string\",\n  \"ehr_patient_id\": \"string\",\n  \"provider\": \"string\",\n  \"id\": \"string\",\n  \"created_at\": \"1963-03-03T23:42:22.073Z\",\n  \"updated_at\": \"2010-11-18T12:14:02.601Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90d2aa68-c7c3-4968-9119-089c67451e30",
+          "name": "List Patient Profiles",
+          "request": {
+            "name": "List Patient Profiles",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ehr_patient_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "218ccc61-6623-4fe3-819e-e46f8cb7c7ad",
+              "name": "Patient profiles returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ehr_patient_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"date_of_birth\": \"1987-01-25\",\n      \"gender\": \"string\",\n      \"ehr_patient_id\": \"string\",\n      \"provider\": \"string\",\n      \"id\": \"string\",\n      \"created_at\": \"1994-01-05T09:15:10.407Z\",\n      \"updated_at\": \"1999-08-06T11:45:07.836Z\"\n    },\n    {\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"date_of_birth\": \"1947-03-31\",\n      \"gender\": \"string\",\n      \"ehr_patient_id\": \"string\",\n      \"provider\": \"string\",\n      \"id\": \"string\",\n      \"created_at\": \"1959-11-30T08:02:43.482Z\",\n      \"updated_at\": \"1972-01-07T01:20:59.235Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8264f1fd-c3cc-4fe3-8b71-54085837b840",
+          "name": "Get Patient Profile",
+          "request": {
+            "name": "Get Patient Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles",
+                ":patient_profile_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_profile_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46d479db-48bf-40e9-af30-fb57f3bd6785",
+              "name": "Patient profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles",
+                    ":patient_profile_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_profile_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"2026-03-13\",\n  \"gender\": \"string\",\n  \"ehr_patient_id\": \"string\",\n  \"provider\": \"string\",\n  \"id\": \"string\",\n  \"created_at\": \"1963-03-03T23:42:22.073Z\",\n  \"updated_at\": \"2010-11-18T12:14:02.601Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe9db780-165b-4063-afad-40d0ee163805",
+          "name": "Update Patient Profile",
+          "request": {
+            "name": "Update Patient Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles",
+                ":patient_profile_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_profile_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"ehr_patient_id\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b0c7c8c4-2cf8-4e65-b35f-81c2d5ef15ba",
+              "name": "Patient profile updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles",
+                    ":patient_profile_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_profile_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"2024-05-10\",\n  \"gender\": \"string\",\n  \"ehr_patient_id\": \"string\",\n  \"provider\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"2026-03-13\",\n  \"gender\": \"string\",\n  \"ehr_patient_id\": \"string\",\n  \"provider\": \"string\",\n  \"id\": \"string\",\n  \"created_at\": \"1963-03-03T23:42:22.073Z\",\n  \"updated_at\": \"2010-11-18T12:14:02.601Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cee2f7f-bd2b-4395-b760-1ea7fdcd1394",
+          "name": "Batch Delete Patient Profiles",
+          "request": {
+            "name": "Batch Delete Patient Profiles",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles:batch-delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_profile_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f5fec7f-d4b8-4f22-88a5-e68cb22420dd",
+              "name": "Profiles deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles:batch-delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_profile_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e80a08e7-9d43-4168-ba1a-c846846f79c3",
+          "name": "Link Session To Patient Profile",
+          "request": {
+            "name": "Link Session To Patient Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "patient-profiles",
+                ":patient_profile_id",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_profile_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76ce9e29-9af7-47c4-be7b-e0038f10d577",
+              "name": "Session linked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient-profiles",
+                    ":patient_profile_id",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_profile_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3f727bc0-016c-4142-af5d-c06740d14ad7",
+    "name": "Heidi Health Ask Heidi Patient Profiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+      "type": "text/plain"
+    }
+  }
+}

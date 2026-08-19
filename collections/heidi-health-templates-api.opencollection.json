@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Heidi Health Ask Heidi Templates API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Consult Note Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/templates/document-templates"
+          },
+          "docs": "List Consult Note Templates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

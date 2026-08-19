@@ -1,0 +1,252 @@
+{
+  "item": [
+    {
+      "id": "00acb80d-fd7e-4c5a-826d-008c63d61060",
+      "name": "Documents",
+      "description": {
+        "content": "Auxiliary template-driven documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2878cc79-8524-4467-8009-f02bf623df6e",
+          "name": "Generate Document",
+          "request": {
+            "name": "Generate Document",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"generation_method\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"voice_style\": \"<string>\",\n  \"brain\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3e297967-bd3f-4f3c-9396-5ccff3533826",
+              "name": "Document generated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"generation_method\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"voice_style\": \"<string>\",\n  \"brain\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"index\": 3364,\n  \"name\": \"string\",\n  \"template_id\": \"string\",\n  \"generation_type\": \"string\",\n  \"content\": \"string\",\n  \"content_type\": \"HTML\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "012481b5-ae61-4a87-b67a-b4eb4c1db3dc",
+          "name": "List Session Documents",
+          "request": {
+            "name": "List Session Documents",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e85b0dc7-363c-49ad-8088-044e66588649",
+              "name": "Documents linked to session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"index\": 3960,\n      \"name\": \"string\",\n      \"template_id\": \"string\",\n      \"generation_type\": \"string\",\n      \"content\": \"string\",\n      \"content_type\": \"MARKDOWN\"\n    },\n    {\n      \"id\": \"string\",\n      \"index\": 3850,\n      \"name\": \"string\",\n      \"template_id\": \"string\",\n      \"generation_type\": \"string\",\n      \"content\": \"string\",\n      \"content_type\": \"MARKDOWN\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8a230f4d-5610-4786-8d7f-c5678a5bda3f",
+    "name": "Heidi Health Ask Heidi Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+      "type": "text/plain"
+    }
+  }
+}

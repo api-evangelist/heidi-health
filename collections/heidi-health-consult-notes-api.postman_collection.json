@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "3e864c7e-373f-4d95-9699-6e20529d5044",
+      "name": "Consult Notes",
+      "description": {
+        "content": "Streamed consult-note generation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c919849-fc15-4540-a239-eff5162d4a4d",
+          "name": "Generate Consult Note",
+          "request": {
+            "name": "Generate Consult Note",
+            "description": {
+              "content": "Stream a consult note generated from the session's transcript and context.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "consult-note"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/x-ndjson"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"generation_method\": \"<string>\",\n  \"addition\": \"<string>\",\n  \"voice_style\": \"<string>\",\n  \"brain\": \"LEFT\",\n  \"template_id\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3be862ea-9555-4b95-b9c8-0cf77c51d290",
+              "name": "Streamed consult-note chunks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "consult-note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/x-ndjson"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"generation_method\": \"<string>\",\n  \"addition\": \"<string>\",\n  \"voice_style\": \"<string>\",\n  \"brain\": \"LEFT\",\n  \"template_id\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/x-ndjson"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19e0dec0-b0f9-48f0-95f7-17efbb5c2020",
+          "name": "Generate Custom Template Consult Note",
+          "request": {
+            "name": "Generate Custom Template Consult Note",
+            "description": {
+              "content": "Generate a consult note against a client-supplied JSON template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "client-customised-template",
+                "response"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"<object>\",\n  \"content_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff8aafec-8639-4984-a6c4-264f3351f644",
+              "name": "Generated structured response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":session_id",
+                    "client-customised-template",
+                    "response"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"template\": \"<object>\",\n  \"content_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "31d9e1dc-df52-4d76-a6e8-8b6ad8fb45ad",
+    "name": "Heidi Health Ask Heidi Consult Notes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician\ntools) drive Heidi's ambient documentation engine end-to-end:\nauthentication via tenant API key + per-user JWT, patient profile\nmanagement, session lifecycle (create, update, list, retrieve),\ncontextual attachments and linked sessions, audio upload (single file or\nchunked live), transcript retrieval (final or live-chunked), template\ndiscovery, streamed consult-note and document generation against Heidi\nor custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT\nand others), and streamed Ask Heidi assistant responses.\n\nDocumentation: https://www.heidihealth.com/developers/heidi-api/overview\n\n\nContact Support:\n Name: Heidi Health Support",
+      "type": "text/plain"
+    }
+  }
+}

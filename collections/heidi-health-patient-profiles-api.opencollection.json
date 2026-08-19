@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Heidi Health Ask Heidi Patient Profiles API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patient Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Patient Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/patient-profiles",
+            "params": [
+              {
+                "name": "ehr_patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Patient Profiles"
+        },
+        {
+          "info": {
+            "name": "Create Patient Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/patient-profiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Patient Profile"
+        },
+        {
+          "info": {
+            "name": "Get Patient Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/patient-profiles/:patient_profile_id",
+            "params": [
+              {
+                "name": "patient_profile_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Patient Profile"
+        },
+        {
+          "info": {
+            "name": "Update Patient Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/patient-profiles/:patient_profile_id",
+            "params": [
+              {
+                "name": "patient_profile_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Patient Profile"
+        },
+        {
+          "info": {
+            "name": "Batch Delete Patient Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/patient-profiles:batch-delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch Delete Patient Profiles"
+        },
+        {
+          "info": {
+            "name": "Link Session To Patient Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/patient-profiles/:patient_profile_id/sessions",
+            "params": [
+              {
+                "name": "patient_profile_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Link Session To Patient Profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

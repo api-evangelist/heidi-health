@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Heidi Health Ask Heidi Consult Notes API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Consult Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Consult Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/consult-note",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stream a consult note generated from the session's transcript and context."
+        },
+        {
+          "info": {
+            "name": "Generate Custom Template Consult Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/client-customised-template/response",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a consult note against a client-supplied JSON template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

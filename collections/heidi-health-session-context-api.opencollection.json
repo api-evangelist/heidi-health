@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Heidi Health Ask Heidi Session Context API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Session Context",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Context Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/context-documents",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Context Documents"
+        },
+        {
+          "info": {
+            "name": "Upload Context Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/context-documents",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "unstructured",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload Context Document"
+        },
+        {
+          "info": {
+            "name": "Delete Context Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://registrar.api.heidihealth.com/api/v2/ml-scribe/open-api/sessions/:session_id/context-documents",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete Context Documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
