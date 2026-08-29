@@ -1,0 +1,34 @@
+slug: heidi-health
+provider: Heidi Health
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Consult Notes
+  spec_file: heidi-health-consult-notes-api-openapi.yml
+  capability_id: BC-2830.10
+  capability_id_l1: BC-2830
+  capability_name: Clinical Note Documentation
+  confidence: 0.9
+  evidence: POST /sessions/{session_id}/consult-note  generateConsultNote  Generate Consult Note
+  reason: Generates the clinician's consult note (including against custom templates) from ambient capture
+    — squarely Clinical Note Documentation across encounter types using voice/ambient capture modes.
+- tag: Transcription
+  spec_file: heidi-health-transcription-api-openapi.yml
+  capability_id: BC-2830.10
+  capability_id_l1: BC-2830
+  capability_name: Clinical Note Documentation
+  confidence: 0.85
+  evidence: '"Get Session Transcript" / "Get Live Session Transcript" over "Heidi''s ambient documentation
+    engine" — "real-time clinical documentation from audio"'
+  reason: Operations upload consult audio and retrieve transcripts that feed clinician note generation;
+    this is ambient/voice capture of clinical notes, matching Clinical Note Documentation.

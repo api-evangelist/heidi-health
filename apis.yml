@@ -638,6 +638,9 @@ apis:
   - type: Documentation
     url: https://www.heidihealth.com/developers/heidi-api/ask-heidi
 common:
+  - type: CapabilityMap
+    url: capabilities/heidi-health-capability-edges.yml
+    name: Heidi Health Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/heidi-health/overview
   - type: AgenticAccess
