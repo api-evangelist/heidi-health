@@ -11,24 +11,35 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 2
+edge_count: 3
 edges:
 - tag: Consult Notes
   spec_file: heidi-health-consult-notes-api-openapi.yml
   capability_id: BC-2830.10
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
-  confidence: 0.9
-  evidence: POST /sessions/{session_id}/consult-note  generateConsultNote  Generate Consult Note
-  reason: Generates the clinician's consult note (including against custom templates) from ambient capture
-    — squarely Clinical Note Documentation across encounter types using voice/ambient capture modes.
+  confidence: 0.93
+  evidence: POST /sessions/{session_id}/consult-note  "Generate Consult Note"; "streamed consult-note
+    ... generation against Heidi or custom templates"
+  reason: Operations author clinical consult notes from the encounter using narrative/ambient capture
+    — squarely Clinical Note Documentation.
 - tag: Transcription
   spec_file: heidi-health-transcription-api-openapi.yml
   capability_id: BC-2830.10
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
   confidence: 0.85
-  evidence: '"Get Session Transcript" / "Get Live Session Transcript" over "Heidi''s ambient documentation
-    engine" — "real-time clinical documentation from audio"'
-  reason: Operations upload consult audio and retrieve transcripts that feed clinician note generation;
-    this is ambient/voice capture of clinical notes, matching Clinical Note Documentation.
+  evidence: POST /sessions/{session_id}/upload-audio  Upload Session Audio; GET /sessions/{session_id}/transcript  Get
+    Session Transcript; schemas LiveTranscript, Transcript
+  reason: Consult audio upload and transcript retrieval driving Heidi's ambient documentation engine is
+    exactly authoring of clinical notes via voice/ambient capture, per BC-2830.10's scope.
+- tag: Documents
+  spec_file: heidi-health-documents-api-openapi.yml
+  capability_id: BC-2830.10
+  capability_id_l1: BC-2830
+  capability_name: Clinical Note Documentation
+  confidence: 0.7
+  evidence: POST /sessions/{session_id}/documents  "Generate Document"; "List Session Documents"
+  reason: Generation and listing of documents produced from a clinical consult session in an ambient scribe
+    product, i.e. clinician documentation output. The generic 'Documents' naming leaves some doubt about
+    the exact sub-capability.
