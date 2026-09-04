@@ -98,7 +98,7 @@ modified: '2026-05-24'
 specificationVersion: '0.23'
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/heidi-health.png
 kind: contract
-position: Provider
+position: Producing
 access: 3rd-Party
 apis:
 - aid: heidi-health:heidi-widget-sdk
