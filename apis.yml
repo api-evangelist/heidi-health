@@ -109,6 +109,12 @@ apis:
     methods/callbacks, patient-information parameters, and TypeScript types.
   humanURL: https://www.heidihealth.com/developers/widget/overview
   tags:
+  - Widgets
+  - SDK
+  - Embed
+  - JavaScript
+  - EHR Integration
+  tags_raw:
   - Widget
   - SDK
   - Embed
