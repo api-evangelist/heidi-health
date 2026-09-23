@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Heidi Health Ask Heidi Patient Profiles API
+  title: Heidi Health Patient Profiles API
   version: v2
   summary: Public Heidi REST API for ambient AI medical scribe, transcription, consult notes, documents, clinical coding, and Ask Heidi.
   description: 'The Heidi API lets partner platforms (EHRs, telehealth apps, custom clinician
@@ -17,14 +17,7 @@ info:
 
     discovery, streamed consult-note and document generation against Heidi
 
-    or custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT
-
-    and others), and streamed Ask Heidi assistant responses.
-
-
-    Documentation: https://www.heidihealth.com/developers/heidi-api/overview
-
-    '
+    or custom…'
   contact:
     name: Heidi Health Support
     url: https://support.heidihealth.com
@@ -162,6 +155,19 @@ paths:
           description: Session linked.
 components:
   schemas:
+    PatientProfile:
+      allOf:
+      - $ref: '#/components/schemas/PatientProfileCreate'
+      - type: object
+        properties:
+          id:
+            type: string
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
     PatientProfileCreate:
       type: object
       properties:
@@ -181,19 +187,6 @@ components:
     PatientProfileUpdate:
       allOf:
       - $ref: '#/components/schemas/PatientProfileCreate'
-    PatientProfile:
-      allOf:
-      - $ref: '#/components/schemas/PatientProfileCreate'
-      - type: object
-        properties:
-          id:
-            type: string
-          created_at:
-            type: string
-            format: date-time
-          updated_at:
-            type: string
-            format: date-time
   parameters:
     PatientProfileId:
       in: path

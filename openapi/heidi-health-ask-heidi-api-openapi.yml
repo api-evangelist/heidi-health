@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Heidi Health Ask Heidi API
   version: v2
@@ -17,14 +17,7 @@ info:
 
     discovery, streamed consult-note and document generation against Heidi
 
-    or custom templates, multi-standard clinical coding (ICD-10/SNOMED/CPT
-
-    and others), and streamed Ask Heidi assistant responses.
-
-
-    Documentation: https://www.heidihealth.com/developers/heidi-api/overview
-
-    '
+    or custom…'
   contact:
     name: Heidi Health Support
     url: https://support.heidihealth.com
@@ -63,12 +56,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/StreamChunk'
 components:
+  parameters:
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema:
+        type: string
   schemas:
-    StreamChunk:
-      type: object
-      properties:
-        data:
-          type: string
     AskHeidiRequest:
       type: object
       required:
@@ -85,13 +80,11 @@ components:
           enum:
           - MARKDOWN
           - HTML
-  parameters:
-    SessionId:
-      in: path
-      name: session_id
-      required: true
-      schema:
-        type: string
+    StreamChunk:
+      type: object
+      properties:
+        data:
+          type: string
   securitySchemes:
     heidiApiKey:
       type: apiKey

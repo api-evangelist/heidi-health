@@ -1,0 +1,25 @@
+# Front Door AI Index — heidi-health — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: heidi-health
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.heidihealth.com
+  final_host: www.heidihealth.com
+  ownership: own
+  owner: heidi-health
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 4
+  host_score: 4
+  density: 12.5
+  words: 320
+  tiers:
+    agentic: 0
+    core: 4
+    model: 0
+  ambiguous: 0
+  top_terms:
+    AI: 4

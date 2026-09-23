@@ -1,16 +1,7 @@
 {
   "provider": "heidi-health",
   "sources": [
-    "heidi-health-ask-heidi-api-openapi.yml",
-    "heidi-health-authentication-api-openapi.yml",
-    "heidi-health-clinical-coding-api-openapi.yml",
-    "heidi-health-consult-notes-api-openapi.yml",
-    "heidi-health-documents-api-openapi.yml",
-    "heidi-health-patient-profiles-api-openapi.yml",
-    "heidi-health-session-context-api-openapi.yml",
-    "heidi-health-sessions-api-openapi.yml",
-    "heidi-health-templates-api-openapi.yml",
-    "heidi-health-transcription-api-openapi.yml"
+    "_original/heidi-health-openapi.yml"
   ],
   "outputs": [
     "heidi-health-ask-heidi-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "heidi-health-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "heidi-health-ask-heidi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-clinical-coding-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-consult-notes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-patient-profiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-session-context-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "heidi-health-transcription-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
