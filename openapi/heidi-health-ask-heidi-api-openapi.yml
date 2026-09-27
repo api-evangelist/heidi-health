@@ -56,14 +56,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/StreamChunk'
 components:
-  parameters:
-    SessionId:
-      in: path
-      name: session_id
-      required: true
-      schema:
-        type: string
   schemas:
+    StreamChunk:
+      type: object
+      properties:
+        data:
+          type: string
     AskHeidiRequest:
       type: object
       required:
@@ -80,11 +78,13 @@ components:
           enum:
           - MARKDOWN
           - HTML
-    StreamChunk:
-      type: object
-      properties:
-        data:
-          type: string
+  parameters:
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     heidiApiKey:
       type: apiKey

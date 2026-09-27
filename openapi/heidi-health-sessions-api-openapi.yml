@@ -124,13 +124,6 @@ paths:
                     items:
                       $ref: '#/components/schemas/Session'
 components:
-  parameters:
-    SessionId:
-      in: path
-      name: session_id
-      required: true
-      schema:
-        type: string
   schemas:
     SessionCreate:
       type: object
@@ -139,32 +132,6 @@ components:
           type: string
         ehr_appointment_id:
           type: string
-    SessionUpdate:
-      type: object
-      properties:
-        duration:
-          type: integer
-          description: Session duration in seconds.
-        language_code:
-          type: string
-        output_language_code:
-          type: string
-        patient:
-          type: object
-        clinician_notes:
-          type: array
-          items:
-            type: string
-        ehr_appointment_id:
-          type: string
-        ehr_patient_id:
-          type: string
-        consent_obtained:
-          type: boolean
-        linked_sessions_for_context:
-          type: array
-          items:
-            type: string
     Session:
       type: object
       properties:
@@ -222,6 +189,39 @@ components:
           enum:
           - MARKDOWN
           - HTML
+    SessionUpdate:
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: Session duration in seconds.
+        language_code:
+          type: string
+        output_language_code:
+          type: string
+        patient:
+          type: object
+        clinician_notes:
+          type: array
+          items:
+            type: string
+        ehr_appointment_id:
+          type: string
+        ehr_patient_id:
+          type: string
+        consent_obtained:
+          type: boolean
+        linked_sessions_for_context:
+          type: array
+          items:
+            type: string
+  parameters:
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     heidiApiKey:
       type: apiKey
