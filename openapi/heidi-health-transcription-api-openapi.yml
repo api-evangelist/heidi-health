@@ -88,6 +88,15 @@ paths:
                 $ref: '#/components/schemas/LiveTranscript'
 components:
   schemas:
+    Transcript:
+      type: object
+      properties:
+        session_id:
+          type: string
+        transcript:
+          type: string
+        language_code:
+          type: string
     LiveTranscript:
       type: object
       properties:
@@ -124,15 +133,6 @@ components:
                 - USER_UPLOADED
                 - LIVE
                 - BACKUP
-    Transcript:
-      type: object
-      properties:
-        session_id:
-          type: string
-        transcript:
-          type: string
-        language_code:
-          type: string
   parameters:
     SessionId:
       in: path
