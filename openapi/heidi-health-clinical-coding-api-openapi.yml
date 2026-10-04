@@ -66,6 +66,39 @@ paths:
                 $ref: '#/components/schemas/ClinicalCodesResponse'
 components:
   schemas:
+    ClinicalCodesResponse:
+      type: object
+      properties:
+        coding_system:
+          type: string
+        status:
+          type: string
+          enum:
+          - PROCESSING
+          - READY
+          - FAILED
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClinicalCodeEntity'
+    ClinicalCode:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        coding_system:
+          type: string
+        effective_date:
+          type: string
+          format: date
+        valid:
+          type: boolean
+        hierarchy:
+          type: array
+          items:
+            type: string
     ClinicalCodeEntity:
       type: object
       properties:
@@ -93,39 +126,6 @@ components:
                 type: integer
               end:
                 type: integer
-    ClinicalCode:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-        coding_system:
-          type: string
-        effective_date:
-          type: string
-          format: date
-        valid:
-          type: boolean
-        hierarchy:
-          type: array
-          items:
-            type: string
-    ClinicalCodesResponse:
-      type: object
-      properties:
-        coding_system:
-          type: string
-        status:
-          type: string
-          enum:
-          - PROCESSING
-          - READY
-          - FAILED
-        entities:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClinicalCodeEntity'
   parameters:
     SessionId:
       in: path

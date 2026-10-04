@@ -154,23 +154,14 @@ paths:
         '200':
           description: Session linked.
 components:
+  parameters:
+    PatientProfileId:
+      in: path
+      name: patient_profile_id
+      required: true
+      schema:
+        type: string
   schemas:
-    PatientProfileCreate:
-      type: object
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        date_of_birth:
-          type: string
-          format: date
-        gender:
-          type: string
-        ehr_patient_id:
-          type: string
-        provider:
-          type: string
     PatientProfileUpdate:
       allOf:
       - $ref: '#/components/schemas/PatientProfileCreate'
@@ -187,13 +178,22 @@ components:
           updated_at:
             type: string
             format: date-time
-  parameters:
-    PatientProfileId:
-      in: path
-      name: patient_profile_id
-      required: true
-      schema:
-        type: string
+    PatientProfileCreate:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        gender:
+          type: string
+        ehr_patient_id:
+          type: string
+        provider:
+          type: string
   securitySchemes:
     heidiApiKey:
       type: apiKey
