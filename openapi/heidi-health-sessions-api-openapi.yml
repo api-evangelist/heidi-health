@@ -125,6 +125,59 @@ paths:
                       $ref: '#/components/schemas/Session'
 components:
   schemas:
+    SessionUpdate:
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: Session duration in seconds.
+        language_code:
+          type: string
+        output_language_code:
+          type: string
+        patient:
+          type: object
+        clinician_notes:
+          type: array
+          items:
+            type: string
+        ehr_appointment_id:
+          type: string
+        ehr_patient_id:
+          type: string
+        consent_obtained:
+          type: boolean
+        linked_sessions_for_context:
+          type: array
+          items:
+            type: string
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        index:
+          type: integer
+        name:
+          type: string
+        template_id:
+          type: string
+        generation_type:
+          type: string
+        content:
+          type: string
+        content_type:
+          type: string
+          enum:
+          - MARKDOWN
+          - HTML
+    SessionCreate:
+      type: object
+      properties:
+        patient_profile_id:
+          type: string
+        ehr_appointment_id:
+          type: string
     Session:
       type: object
       properties:
@@ -162,59 +215,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    Document:
-      type: object
-      properties:
-        id:
-          type: string
-        index:
-          type: integer
-        name:
-          type: string
-        template_id:
-          type: string
-        generation_type:
-          type: string
-        content:
-          type: string
-        content_type:
-          type: string
-          enum:
-          - MARKDOWN
-          - HTML
-    SessionUpdate:
-      type: object
-      properties:
-        duration:
-          type: integer
-          description: Session duration in seconds.
-        language_code:
-          type: string
-        output_language_code:
-          type: string
-        patient:
-          type: object
-        clinician_notes:
-          type: array
-          items:
-            type: string
-        ehr_appointment_id:
-          type: string
-        ehr_patient_id:
-          type: string
-        consent_obtained:
-          type: boolean
-        linked_sessions_for_context:
-          type: array
-          items:
-            type: string
-    SessionCreate:
-      type: object
-      properties:
-        patient_profile_id:
-          type: string
-        ehr_appointment_id:
-          type: string
   parameters:
     SessionId:
       in: path

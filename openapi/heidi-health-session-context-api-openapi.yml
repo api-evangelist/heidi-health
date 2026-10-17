@@ -97,13 +97,6 @@ paths:
         '204':
           description: Deleted.
 components:
-  parameters:
-    SessionId:
-      in: path
-      name: session_id
-      required: true
-      schema:
-        type: string
   schemas:
     ContextDocument:
       type: object
@@ -122,6 +115,13 @@ components:
           - READY
         unstructured:
           type: boolean
+  parameters:
+    SessionId:
+      in: path
+      name: session_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     heidiApiKey:
       type: apiKey

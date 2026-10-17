@@ -87,6 +87,11 @@ paths:
                 type: object
 components:
   schemas:
+    StreamChunk:
+      type: object
+      properties:
+        data:
+          type: string
     ConsultNoteGenerate:
       type: object
       required:
@@ -122,11 +127,6 @@ components:
           enum:
           - MARKDOWN
           - HTML
-    StreamChunk:
-      type: object
-      properties:
-        data:
-          type: string
   parameters:
     SessionId:
       in: path
